@@ -41,7 +41,7 @@ class DeviantArt:
             return
 
         response_json = response.json()
-        while response_json.get('results'):
+        while response_json.get('results') and len(response_json['results']) > 0:
 
             for r in response_json['results']:
                 yield r
