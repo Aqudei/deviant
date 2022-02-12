@@ -2,7 +2,7 @@ server {
     listen 80;
     server_name 143.198.179.20;
 
-    location = /favicon.ico { access_log off; log_not_found off; }
+    location = /static/favicon.ico { access_log off; log_not_found off; root /var/www/deviant; }
     location /static/ {
         root /var/www/deviant;
     }
