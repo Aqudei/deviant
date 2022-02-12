@@ -24,8 +24,8 @@ class DAUser(models.Model):
     userid = models.UUIDField(_("DA User Id"), null=True, blank=True)
 
     class Meta:
-        verbose_name = _("dauser")
-        verbose_name_plural = _("dausers")
+        verbose_name = _("Watcher")
+        verbose_name_plural = _("Watchers")
 
     def __str__(self):
         return self.name
