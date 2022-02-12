@@ -31,7 +31,7 @@ class Command(BaseCommand):
                     "user": dj_user,
                     "userid": w['user'].get('userid')
                 })
-            profile = da.get_profile(da_username)
+            profile = da.get_profile(w['user']['username'])
             if profile:
                 obj.pageview_count = profile['stats']['profile_pageviews']
                 obj.deviations_count = profile['stats']['user_deviations']
