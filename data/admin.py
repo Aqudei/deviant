@@ -22,7 +22,7 @@ class DAUserAdmin(admin.ModelAdmin):
     list_display = ('username', 'watchers_count',
                     'pageview_count', 'deviations_count')
     search_fields = ('username',)
-    list_filter = ('watchers_count',)
+    # list_filter = ('watchers_count',)
 
 
 admin.site.register(DAUser, DAUserAdmin)
