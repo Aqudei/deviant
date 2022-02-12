@@ -49,8 +49,8 @@ class DeviantArt:
             if not response_json['has_more']:
                 break
 
-            params['offset'] = response.json()['next_offset']
-            response = self.session.get(url)
+            params['offset'] = response_json['next_offset']
+            response = self.session.get(url, params=params)
             if not response.status_code == 200:
                 print(f"ERROR: {response.text}")
                 break
