@@ -1,0 +1,51 @@
+{
+  "user": {
+    "userid": "69AFB42E-BDA6-231D-CCF3-8DF2135FE4AB",
+    "username": "GrowGetter",
+    "usericon": "https://a.deviantart.net/avatars/g/r/growgetter.jpg?2",
+    "type": "premium",
+    "stats": {
+      "watchers": 4887,
+      "friends": 84
+    }
+  },
+  "is_watching": false,
+  "profile_url": "https://www.deviantart.com/growgetter",
+  "user_is_artist": false,
+  "artist_level": null,
+  "artist_specialty": null,
+  "real_name": "",
+  "tagline": "",
+  "countryid": 139,
+  "country": "Mexico",
+  "website": "http://growgettercomics.com/",
+  "bio": "",
+  "cover_photo": "",
+  "last_status": {
+    "statusid": "A503435C-3A52-2E4B-4AF8-B4D043CE4390",
+    "body": "<div><div>I could use some help from people on small tasks like combining images to make PDFs, creating video slideshows for YouTube and things like that.</div><div></div><div>If you cant afford (or want to trade time instead) for comics, send me a DM!</div></div>",
+    "ts": "2021-03-30T20:01:24-0700",
+    "url": "https://www.deviantart.com/growgetter/status-update/22204370",
+    "comments_count": 2,
+    "is_share": false,
+    "is_deleted": false,
+    "author": {
+      "userid": "69AFB42E-BDA6-231D-CCF3-8DF2135FE4AB",
+      "username": "GrowGetter",
+      "usericon": "https://a.deviantart.net/avatars/g/r/growgetter.jpg?2",
+      "type": "premium",
+      "stats": {
+        "watchers": 4887,
+        "friends": 84
+      }
+    },
+    "items": []
+  },
+  "stats": {
+    "user_deviations": 388,
+    "user_favourites": 83,
+    "user_comments": 696,
+    "profile_pageviews": 223032,
+    "profile_comments": 39
+  }
+}
