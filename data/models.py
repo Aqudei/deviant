@@ -28,7 +28,7 @@ class DAUser(models.Model):
         verbose_name_plural = _("Watchers")
 
     def __str__(self):
-        return self.name
+        return self.username
 
     def get_absolute_url(self):
         return reverse("dauser_detail", kwargs={"pk": self.pk})
