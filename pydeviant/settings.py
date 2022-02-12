@@ -142,7 +142,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 DA_CLIENT_ID = os.environ['CLIENT_ID']
 DA_CLIENT_SECRET = os.environ['CLIENT_SECRET']
-DA_USERNAME = 'GrowGetter'
+DA_USERNAME = 'growgetter'
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
