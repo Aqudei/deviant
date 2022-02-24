@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-m(932@tp9n-7ixv$iy28dz&*!+k+t)20(&3(eu=!)-*s06^jef
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['143.198.179.20', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost','.dwatcher.ga']
 
 # Application definition
 
@@ -143,8 +143,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DA_CLIENT_ID = os.environ['CLIENT_ID']
 DA_CLIENT_SECRET = os.environ['CLIENT_SECRET']
 DA_USERNAME = 'growgetter'
+DA_TOKEN_URL = 'https://www.deviantart.com/oauth2/token'
+DA_REDIRECT_URL = os.environ.get('DA_REDIRECT_URL')
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 STATIC_ROOT = BASE_DIR / 'static'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'

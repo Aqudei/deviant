@@ -1,0 +1,1 @@
+scopes = [browse, comment.post]
