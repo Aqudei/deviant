@@ -14,7 +14,7 @@ def index(request):
     authorization_url = ''
 
     if request.method == 'GET':
-        scope = 'comment.post'
+        scope = 'user'
         deviant = OAuth2Session(settings.DA_CLIENT_ID,
                                 redirect_uri=settings.DA_REDIRECT_URL, scope=scope)
 
