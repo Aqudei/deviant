@@ -3,5 +3,5 @@ __pycache__/
 *.p[cod]
 db.sqlite3
 .env
-static/
-media/
+/static/
+/media/
