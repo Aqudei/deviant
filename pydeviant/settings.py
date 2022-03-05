@@ -149,6 +149,7 @@ DA_CLIENT_SECRET = os.environ['CLIENT_SECRET']
 DA_USERNAME = 'growgetter'
 DA_TOKEN_URL = 'https://www.deviantart.com/oauth2/token'
 DA_REDIRECT_URL = os.environ.get('DA_REDIRECT_URL')
+DA_AUTHORIZATION_URL = os.environ.get('DA_AUTHORIZATION_URL')
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
