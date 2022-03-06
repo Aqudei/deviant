@@ -44,12 +44,11 @@ def oauth_callback(request):
     if response.status_code == 200:
         user = response.json()
         User.objects.update_or_create(
-            username=user['username'],
+            da_username=user['username'],
             defaults={
                 "token": token,
                 "da_userid": user['userid'],
-                "da_username": user['username']
             }
         )
 
-    return HttpResponse()
+    return redirect('/admin/')
