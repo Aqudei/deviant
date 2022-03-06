@@ -8,6 +8,7 @@ import json
 import pickle
 from requests_oauthlib import OAuth2Session
 from django.conf import settings
+from data.models import *
 
 
 class Command(BaseCommand):
@@ -24,9 +25,9 @@ class Command(BaseCommand):
             outfile.write(json.dumps(obj, indent=2))
 
     def handle(self, *args, **options):
-        with open("./creds", 'rb') as infile:
-            cred = pickle.load(infile)
-
-            session = OAuth2Session(settings.DA_CLIENT_ID, token=cred)
-            import pdb
-            pdb.set_trace()
+        for user in User.objects.filter(da_userid__isnull=False).exclude(da_userid=''):
+            deviant = OAuth2Session(client_id=settings.DA_CLIENT_ID,
+                                    token=user.token)
+            response = deviant.get(
+                "https://www.deviantart.com/api/v1/oauth2/placebo")
+            print(response.json())

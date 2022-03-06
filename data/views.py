@@ -41,9 +41,10 @@ def oauth_callback(request):
     if response.status_code == 200:
         user = response.json()
         User.objects.update_or_create(
-            da_userid=user['userid'],
+            username=user['username'],
             defaults={
                 "token": token,
+                "da_userid": user['userid'],
                 "da_username": user['username']
             }
         )
