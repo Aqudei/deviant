@@ -40,11 +40,11 @@ def oauth_callback(request):
         "https://www.deviantart.com/api/v1/oauth2/user/whoami")
     if response.status_code == 200:
         user = response.json()
-        DAUser.objects.update_or_create(
-            userid=user['userid'],
-            username=user['username'],
+        User.objects.update_or_create(
+            da_userid=user['userid'],
             defaults={
-                "token": token
+                "token": token,
+                "da_username": user['username']
             }
         )
 

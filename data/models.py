@@ -11,6 +11,8 @@ from django.conf import settings
 class User(AbstractUser):
     da_username = models.CharField(
         _("Deviant Username"), max_length=100, null=True, blank=True, unique=True)
+    token = models.JSONField(_("Token"), null=True, blank=True)
+    da_userid = models.UUIDField(_("DA User Id"), null=True, blank=True)
 
 
 class DAUser(models.Model):
@@ -22,7 +24,6 @@ class DAUser(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_(
         "User"), on_delete=models.CASCADE, null=True, blank=True)
     userid = models.UUIDField(_("DA User Id"), null=True, blank=True)
-    token = models.JSONField(_("Token"), null=True, blank=True)
 
     class Meta:
         verbose_name = _("Watcher")

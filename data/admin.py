@@ -9,6 +9,8 @@ class MyUserAdmin(UserAdmin):
     """
     docstring
     """
+    list_display = UserAdmin.list_display + \
+        ('da_username', 'da_userid', 'token')
     fieldsets = UserAdmin.fieldsets + (
         (None, {
             "fields": (
@@ -20,7 +22,7 @@ class MyUserAdmin(UserAdmin):
 
 class DAUserAdmin(admin.ModelAdmin):
     list_display = ('username', 'watchers_count',
-                    'pageview_count', 'deviations_count', 'token')
+                    'pageview_count', 'deviations_count')
     search_fields = ('username',)
     # list_filter = ('watchers_count',)
 
