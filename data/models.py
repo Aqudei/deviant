@@ -12,7 +12,8 @@ class User(AbstractUser):
     da_username = models.CharField(
         _("Deviant Username"), max_length=100, null=True, blank=True, unique=True)
     token = models.JSONField(_("Token"), null=True, blank=True)
-    da_userid = models.UUIDField(_("DA User Id"), null=True, blank=True)
+    da_userid = models.CharField(
+        _("DA User Id"), max_length=100, null=True, blank=True)
 
 
 class DAUser(models.Model):
