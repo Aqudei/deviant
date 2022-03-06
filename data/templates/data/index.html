@@ -44,7 +44,12 @@
                             
                                 <!-- Email address input-->
                             <div class="row">
-                                <div  class="col text-center"><a href='{{oauth_url}}' class="btn btn-primary btn-lg" id="submitButton">Install App</a></div>
+                                <form class="form-subscribe" method='post' action='{% url 'index' %}' id="contactForm" data-sb-form-api-token="API_TOKEN">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col"><button class="btn btn-primary btn-lg" id="submitButton" type="submit">Install App</button></div>
+                                    </div>
+                                </form>
                             </div>
 
                         </div>

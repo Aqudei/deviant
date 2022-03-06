@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from requests_oauthlib import OAuth2Session
 from django.conf import settings
 import pickle
@@ -15,6 +15,9 @@ def index(request):
     authorization_url = ''
 
     if request.method == 'GET':
+        return render(request, 'data/index.html')
+
+    if request.method == 'POST':
         scope = 'user browse comment.post'
         deviant = OAuth2Session(settings.DA_CLIENT_ID,
                                 redirect_uri=settings.DA_REDIRECT_URL, scope=scope)
@@ -22,7 +25,7 @@ def index(request):
         authorization_url, state = deviant.authorization_url(
             settings.DA_AUTHORIZATION_URL)
 
-        return render(request, 'data/index.html', {"oauth_url": authorization_url})
+        return redirect(authorization_url)
 
 
 def oauth_callback(request):
