@@ -20,7 +20,7 @@ class MyUserAdmin(UserAdmin):
 
 class DAUserAdmin(admin.ModelAdmin):
     list_display = ('username', 'watchers_count',
-                    'pageview_count', 'deviations_count')
+                    'pageview_count', 'deviations_count', 'token')
     search_fields = ('username',)
     # list_filter = ('watchers_count',)
 

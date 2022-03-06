@@ -22,6 +22,7 @@ class DAUser(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_(
         "User"), on_delete=models.CASCADE, null=True, blank=True)
     userid = models.UUIDField(_("DA User Id"), null=True, blank=True)
+    token = models.JSONField(_("Token"), null=True, blank=True)
 
     class Meta:
         verbose_name = _("Watcher")
