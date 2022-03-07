@@ -108,7 +108,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
 
-        user = User.objects.get(username=options['user'])
+        user = User.objects.get(da_username=options['user'])
         self.__authorize(user)
 
         if options.get('fetch_deviations'):
