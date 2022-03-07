@@ -35,3 +35,36 @@ class DAUser(models.Model):
 
     def get_absolute_url(self):
         return reverse("dauser_detail", kwargs={"pk": self.pk})
+
+
+class Deviation(models.Model):
+
+    deviationid = models.UUIDField(_("Deviation Id"))
+    title = models.CharField(_("Title"), max_length=250)
+
+    class Meta:
+        verbose_name = _("deviation")
+        verbose_name_plural = _("deviations")
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse("deviation_detail", kwargs={"pk": self.pk})
+
+
+class Favor(models.Model):
+    deviation = models.ForeignKey(
+        'data.Deviation', related_name='favors', on_delete=models.CASCADE)
+    userid = models.UUIDField(_("Deviation Id"), null=True, blank=True)
+    thanked = models.BooleanField(_("Thanked"), default=False)
+
+    class Meta:
+        verbose_name = _("Favor")
+        verbose_name_plural = _("Favors")
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse("Favor_detail", kwargs={"pk": self.pk})

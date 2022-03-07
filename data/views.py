@@ -51,4 +51,4 @@ def oauth_callback(request):
             }
         )
 
-    return redirect('/admin/')
+    return redirect('/admin/data/user/')
