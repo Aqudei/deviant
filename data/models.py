@@ -60,6 +60,8 @@ class Favor(models.Model):
         'data.Deviation', related_name='favors', on_delete=models.CASCADE)
     userid = models.UUIDField(_("Deviation Id"), null=True, blank=True)
     thanked = models.BooleanField(_("Thanked"), default=False)
+    owner = models.ForeignKey("data.User", verbose_name=_(
+        "Owner"), on_delete=models.SET_NULL, null=True)
 
     class Meta:
         verbose_name = _("Favor")

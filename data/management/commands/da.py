@@ -113,15 +113,13 @@ class Command(BaseCommand):
             yield item
 
     def handle(self, *args, **options):
-
-        user = User.objects.get(da_username=options['user'])
-        self.__authorize(user)
+        owner = User.objects.get(da_username=options['user'])
+        self.__authorize(owner)
 
         if options.get('fetch_deviations'):
             for dev in self.list_deviations(options.get('--fetch-deviations')):
-                Deviation.objects.update_or_create(deviationid=dev['deviationid'], defaults={
+                Deviation.objects.update_or_create(deviationid=dev['deviationid'], owner=owner, defaults={
                     "title": dev['title'],
-                    'owner': user
                 })
 
         if options.get('process_favors'):
@@ -130,4 +128,4 @@ class Command(BaseCommand):
                 for f in favors:
                     user = f['user']
                     Favor.objects.get_or_create(
-                        deviation=dev, userid=user['userid'])
+                        deviation=dev, userid=user['userid'], owner=owner)

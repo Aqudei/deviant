@@ -36,7 +36,7 @@ class DeviationAdmin(admin.ModelAdmin):
 
 @admin.register(Favor)
 class FavorAdmin(admin.ModelAdmin):
-    list_display = ('deviation', 'userid', 'thanked')
+    list_display = ('deviation', 'userid', 'thanked', 'owner')
 
 
 admin.site.register(DAUser, DAUserAdmin)
