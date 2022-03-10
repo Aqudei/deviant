@@ -65,24 +65,9 @@ class Command(BaseCommand):
             "username": username
         }
         url = BASE_URL + '/collections/all'
-        response = self.deviant.get(url, params=params)
-        response_json = response.json()
-        if response.status_code != 200:
-            logger.warning(response.text)
-            return
 
-        for dev in response_json["results"]:
-            yield dev
-
-        while response_json['has_more']:
-            params["offset"] = response_json['next_offset']
-
-            response = self.deviant.get(url, params=params)
-
-            response_json = response.json()
-            if response.status_code == 200:
-                for dev in response_json["results"]:
-                    yield dev
+        for item in self.__get_items(url, params):
+            yield item
 
     def __get_items(self, url, params):
         """
