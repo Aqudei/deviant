@@ -58,7 +58,7 @@ class Deviation(models.Model):
 class Favor(models.Model):
     deviation = models.ForeignKey(
         'data.Deviation', related_name='favors', on_delete=models.CASCADE)
-    userid = models.UUIDField(_("Deviation Id"), null=True, blank=True)
+    userid = models.UUIDField(_("User Id"), null=True, blank=True)
     thanked = models.BooleanField(_("Thanked"), default=False)
     owner = models.ForeignKey("data.User", verbose_name=_(
         "Owner"), on_delete=models.SET_NULL, null=True)
@@ -68,7 +68,7 @@ class Favor(models.Model):
         verbose_name_plural = _("Favors")
 
     def __str__(self):
-        return self.name
+        return f"{self.userid}-{self.owner}-{self.thanked}"
 
     def get_absolute_url(self):
         return reverse("Favor_detail", kwargs={"pk": self.pk})

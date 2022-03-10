@@ -46,7 +46,7 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument("user")
-        parser.add_argument("--fetch-deviations")
+        parser.add_argument("--fetch-deviations", action='store_true')
         parser.add_argument("--process-favors", action='store_true')
 
     def __savejson(self, obj, filename):
@@ -76,6 +76,7 @@ class Command(BaseCommand):
         response = self.deviant.get(url, params=params)
 
         if response.status_code != 200:
+            logger.warning(response.text)
             return
 
         response_json = response.json()
@@ -86,6 +87,7 @@ class Command(BaseCommand):
             params['offset'] = response_json['next_offset']
             response = self.deviant.get(url, params=params)
             if response.status_code != 200:
+                logger.warning(response.text)
                 return
 
             response_json = response.json()
@@ -110,8 +112,10 @@ class Command(BaseCommand):
         owner = User.objects.get(da_username=options['user'])
         self.__authorize(owner)
 
+        import pdb
+        pdb.set_trace()
         if options.get('fetch_deviations'):
-            for dev in self.list_deviations(options.get('--fetch-deviations')):
+            for dev in self.list_deviations(owner.da_username):
                 Deviation.objects.update_or_create(deviationid=dev['deviationid'], owner=owner, defaults={
                     "title": dev['title'],
                 })
