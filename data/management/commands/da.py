@@ -69,7 +69,6 @@ class Command(BaseCommand):
         response_json = response.json()
         if response.status_code != 200:
             logger.warning(response.text)
-            yield
             return
 
         for dev in response_json["results"]:
@@ -92,7 +91,6 @@ class Command(BaseCommand):
         response = self.deviant.get(url, params=params)
 
         if response.status_code != 200:
-            yield
             return
 
         response_json = response.json()
@@ -103,7 +101,6 @@ class Command(BaseCommand):
             params['offset'] = response_json['next_offset']
             response = self.deviant.get(url, params=params)
             if response.status_code != 200:
-                yield
                 return
 
             response_json = response.json()
@@ -116,9 +113,11 @@ class Command(BaseCommand):
         docstring
         """
         url = BASE_URL + "/deviation/whofaved"
+
         params = {
             "deviationid": deviationid
         }
+
         for item in self.__get_items(url, params):
             yield item
 
