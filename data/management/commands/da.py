@@ -11,7 +11,9 @@ import pickle
 from requests_oauthlib import OAuth2Session
 from django.conf import settings
 from data.models import *
+import logging
 
+logger = logging.getLogger(__name__)
 BASE_URL = 'https://www.deviantart.com/api/v1/oauth2'
 
 
@@ -65,6 +67,10 @@ class Command(BaseCommand):
         url = BASE_URL + '/collections/all'
         response = self.deviant.get(url, params=params)
         response_json = response.json()
+        if response.status_code != 200:
+            logger.warning(response.text)
+            yield
+            return
 
         for dev in response_json["results"]:
             yield dev
@@ -75,9 +81,9 @@ class Command(BaseCommand):
             response = self.deviant.get(url, params=params)
 
             response_json = response.json()
-
-            for dev in response_json["results"]:
-                yield dev
+            if response.status_code == 200:
+                for dev in response_json["results"]:
+                    yield dev
 
     def __get_items(self, url, params):
         """
