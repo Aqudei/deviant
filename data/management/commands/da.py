@@ -90,6 +90,11 @@ class Command(BaseCommand):
         docstring
         """
         response = self.deviant.get(url, params=params)
+
+        if response.status_code != 200:
+            yield
+            return
+
         response_json = response.json()
         for r in response_json['results']:
             yield r
@@ -97,7 +102,12 @@ class Command(BaseCommand):
         while response_json['has_more']:
             params['offset'] = response_json['next_offset']
             response = self.deviant.get(url, params=params)
+            if response.status_code != 200:
+                yield
+                return
+
             response_json = response.json()
+
             for r in response_json['results']:
                 yield r
 
