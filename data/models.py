@@ -26,7 +26,7 @@ class DAUser(models.Model):
         "User"), on_delete=models.CASCADE, null=True, blank=True)
     userid = models.UUIDField(_("DA User Id"), null=True, blank=True)
     notes = models.TextField(_("Notes"), null=True, blank=True)
-    
+
     class Meta:
         verbose_name = _("Watcher")
         verbose_name_plural = _("Watchers")
@@ -39,7 +39,8 @@ class DAUser(models.Model):
 
 
 class Deviation(models.Model):
-
+    owner = models.ForeignKey("data.User", verbose_name=_(
+        "Owner"), on_delete=models.SET_NULL, null=True)
     deviationid = models.UUIDField(_("Deviation Id"))
     title = models.CharField(_("Title"), max_length=250)
 

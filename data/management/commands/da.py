@@ -114,7 +114,8 @@ class Command(BaseCommand):
         if options.get('fetch_deviations'):
             for dev in self.list_deviations(options.get('--fetch-deviations')):
                 Deviation.objects.update_or_create(deviationid=dev['deviationid'], defaults={
-                    "title": dev['title']
+                    "title": dev['title'],
+                    'owner': user
                 })
 
         if options.get('process_favors'):
