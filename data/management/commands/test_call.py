@@ -124,3 +124,11 @@ class Command(BaseCommand):
                     user = f['user']
                     Favor.objects.get_or_create(
                         deviation=dev, userid=user['userid'])
+
+                    thank = Thank.objects.get_or_create(
+                        user=user, userid=user['userid'])
+
+                    if not thank.sent:
+
+                        thank.sent = True
+                        thank.save()

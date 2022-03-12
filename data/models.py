@@ -16,6 +16,24 @@ class User(AbstractUser):
         _("DA User Id"), max_length=100, null=True, blank=True)
 
 
+class Thank(models.Model):
+
+    owner = models.ForeignKey(User, verbose_name=_(
+        "Owner"), on_delete=models.CASCADE)
+    userid = models.UUIDField(_("DA User Id"))
+    sent = models.BooleanField(_("Sent"), default=False)
+
+    class Meta:
+        verbose_name = _("thank")
+        verbose_name_plural = _("thanks")
+
+    def __str__(self):
+        return f"{self.userid}"
+
+    def get_absolute_url(self):
+        return reverse("thank_detail", kwargs={"pk": self.pk})
+
+
 class DAUser(models.Model):
 
     username = models.CharField(_("Username"), max_length=100)
@@ -57,8 +75,7 @@ class Favor(models.Model):
     deviation = models.ForeignKey(
         'data.Deviation', related_name='favors', on_delete=models.CASCADE)
     userid = models.UUIDField(_("Deviation Id"), null=True, blank=True)
-    thanked = models.BooleanField(_("Thanked"), default=False)
-
+    
     class Meta:
         verbose_name = _("Favor")
         verbose_name_plural = _("Favors")
