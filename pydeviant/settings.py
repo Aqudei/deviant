@@ -101,7 +101,6 @@ else:
         }
     }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
@@ -144,8 +143,8 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-DA_CLIENT_ID = os.environ['CLIENT_ID']
-DA_CLIENT_SECRET = os.environ['CLIENT_SECRET']
+DA_CLIENT_ID = os.environ.get('CLIENT_ID')
+DA_CLIENT_SECRET = os.environ.get('CLIENT_SECRET')
 DA_USERNAME = 'growgetter'
 DA_TOKEN_URL = 'https://www.deviantart.com/oauth2/token'
 DA_REDIRECT_URL = os.environ.get('DA_REDIRECT_URL')

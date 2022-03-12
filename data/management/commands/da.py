@@ -11,7 +11,9 @@ import pickle
 from requests_oauthlib import OAuth2Session
 from django.conf import settings
 from data.models import *
+import logging
 
+logger = logging.getLogger(__name__)
 BASE_URL = 'https://www.deviantart.com/api/v1/oauth2'
 
 
@@ -44,7 +46,7 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument("user")
-        parser.add_argument("--fetch-deviations")
+        parser.add_argument("--fetch-deviations", action='store_true')
         parser.add_argument("--process-favors", action='store_true')
 
     def __savejson(self, obj, filename):
@@ -63,27 +65,20 @@ class Command(BaseCommand):
             "username": username
         }
         url = BASE_URL + '/collections/all'
-        response = self.deviant.get(url, params=params)
-        response_json = response.json()
 
-        for dev in response_json["results"]:
-            yield dev
-
-        while response_json['has_more']:
-            params["offset"] = response_json['next_offset']
-
-            response = self.deviant.get(url, params=params)
-
-            response_json = response.json()
-
-            for dev in response_json["results"]:
-                yield dev
+        for item in self.__get_items(url, params):
+            yield item
 
     def __get_items(self, url, params):
         """
         docstring
         """
         response = self.deviant.get(url, params=params)
+
+        if response.status_code != 200:
+            logger.warning(response.text)
+            return
+
         response_json = response.json()
         for r in response_json['results']:
             yield r
@@ -91,7 +86,12 @@ class Command(BaseCommand):
         while response_json['has_more']:
             params['offset'] = response_json['next_offset']
             response = self.deviant.get(url, params=params)
+            if response.status_code != 200:
+                logger.warning(response.text)
+                return
+
             response_json = response.json()
+
             for r in response_json['results']:
                 yield r
 
@@ -100,21 +100,24 @@ class Command(BaseCommand):
         docstring
         """
         url = BASE_URL + "/deviation/whofaved"
+
         params = {
             "deviationid": deviationid
         }
+
         for item in self.__get_items(url, params):
             yield item
 
     def handle(self, *args, **options):
+        owner = User.objects.get(da_username=options['user'])
+        self.__authorize(owner)
 
-        user = User.objects.get(da_username=options['user'])
-        self.__authorize(user)
-
+        import pdb
+        pdb.set_trace()
         if options.get('fetch_deviations'):
-            for dev in self.list_deviations(options.get('--fetch-deviations')):
-                Deviation.objects.update_or_create(deviationid=dev['deviationid'], defaults={
-                    "title": dev['title']
+            for dev in self.list_deviations(owner.da_username):
+                Deviation.objects.update_or_create(deviationid=dev['deviationid'], owner=owner, defaults={
+                    "title": dev['title'],
                 })
 
         if options.get('process_favors'):

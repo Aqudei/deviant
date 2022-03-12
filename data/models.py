@@ -43,6 +43,7 @@ class DAUser(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_(
         "User"), on_delete=models.CASCADE, null=True, blank=True)
     userid = models.UUIDField(_("DA User Id"), null=True, blank=True)
+    notes = models.TextField(_("Notes"), null=True, blank=True)
 
     class Meta:
         verbose_name = _("Watcher")
@@ -56,7 +57,8 @@ class DAUser(models.Model):
 
 
 class Deviation(models.Model):
-
+    owner = models.ForeignKey("data.User", verbose_name=_(
+        "Owner"), on_delete=models.SET_NULL, null=True)
     deviationid = models.UUIDField(_("Deviation Id"))
     title = models.CharField(_("Title"), max_length=250)
 
@@ -74,14 +76,17 @@ class Deviation(models.Model):
 class Favor(models.Model):
     deviation = models.ForeignKey(
         'data.Deviation', related_name='favors', on_delete=models.CASCADE)
-    userid = models.UUIDField(_("Deviation Id"), null=True, blank=True)
-    
+    userid = models.UUIDField(_("User Id"), null=True, blank=True)
+    thanked = models.BooleanField(_("Thanked"), default=False)
+    owner = models.ForeignKey("data.User", verbose_name=_(
+        "Owner"), on_delete=models.SET_NULL, null=True)
+
     class Meta:
         verbose_name = _("Favor")
         verbose_name_plural = _("Favors")
 
     def __str__(self):
-        return self.name
+        return f"{self.userid}-{self.owner}-{self.thanked}"
 
     def get_absolute_url(self):
         return reverse("Favor_detail", kwargs={"pk": self.pk})
