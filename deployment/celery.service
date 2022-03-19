@@ -6,7 +6,7 @@ After=network.target
 Type=forking
 User=www-data
 Group=www-data
-EnvironmentFile=-/etc/conf.d/celery
+EnvironmentFile=/var/www/deviant/deployment/celery
 WorkingDirectory=/var/www/deviant
 ExecStart=/bin/sh -c '${CELERY_BIN} -A $CELERY_APP multi start $CELERYD_NODES \
 	--pidfile=${CELERYD_PID_FILE} --logfile=${CELERYD_LOG_FILE} \
