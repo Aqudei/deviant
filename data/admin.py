@@ -1,6 +1,8 @@
 from django.contrib import admin
 from .models import Deviation, Favor, User, DAUser
 from django.contrib.auth.admin import UserAdmin
+from django.utils.html import format_html
+from django.urls import resolve
 
 # Register your models here.
 
@@ -9,8 +11,15 @@ class MyUserAdmin(UserAdmin):
     """
     docstring
     """
+
+    def re_authorize(self, obj):
+        """
+        docstring
+        """
+        return format_html("<a href='/init_auth'>Re-authorize App</a>")
+
     list_display = UserAdmin.list_display + \
-        ('da_username', 'da_userid', 'token')
+        ('da_username', 'da_userid', 'token', 're_authorize')
     fieldsets = UserAdmin.fieldsets + (
         (None, {
             "fields": (

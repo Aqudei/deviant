@@ -1,15 +1,34 @@
 import pdb
+from django.conf import settings
 from oauthlib.oauth2 import BackendApplicationClient
 from requests_oauthlib import OAuth2Session
 import json
-from dotenv import load_dotenv
 import os
-load_dotenv()
 
 
 class DeviantArt:
     CLIENT_ID = ''
     CLIENT_SECRET = ''
+
+    def __init__(self, *args, **kwargs):
+        """
+        docstring
+        """
+        self.CLIENT_ID = kwargs.get('client_id', settings.DA_CLIENT_ID)
+        self.CLIENT_SECRET = kwargs.get(
+            'client_secret', settings.DA_CLIENT_SECRET)
+
+        client = BackendApplicationClient(client_id=self.CLIENT_ID)
+        oauth = OAuth2Session(client=client)
+        token = oauth.fetch_token(token_url='https://www.deviantart.com/oauth2/token', client_id=self.CLIENT_ID,
+                                  client_secret=self.CLIENT_SECRET)
+
+        self.token = token
+
+        print("Token:")
+        print(self.token)
+        self.session = OAuth2Session(
+            client_id=self.CLIENT_ID, token=self.token)
 
     def get_profile(self, username):
         """
@@ -55,22 +74,3 @@ class DeviantArt:
                 print(f"ERROR: {response.text}")
                 break
             response_json = response.json()
-
-    def __init__(self, client_id, client_secret):
-        """
-        docstring
-        """
-        self.CLIENT_ID = client_id
-        self.CLIENT_SECRET = client_secret
-
-        client = BackendApplicationClient(client_id=self.CLIENT_ID)
-        oauth = OAuth2Session(client=client)
-        token = oauth.fetch_token(token_url='https://www.deviantart.com/oauth2/token', client_id=self.CLIENT_ID,
-                                  client_secret=self.CLIENT_SECRET)
-
-        self.token = token
-
-        print("Token:")
-        print(self.token)
-        self.session = OAuth2Session(
-            client_id=self.CLIENT_ID, token=self.token)

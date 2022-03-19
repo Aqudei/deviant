@@ -72,7 +72,6 @@ class Deviation(models.Model):
     def get_absolute_url(self):
         return reverse("deviation_detail", kwargs={"pk": self.pk})
 
-
 class Favor(models.Model):
     deviation = models.ForeignKey(
         'data.Deviation', related_name='favors', on_delete=models.CASCADE)

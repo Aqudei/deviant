@@ -15,11 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from data.views import oauth_callback, index
+from data.views import oauth_callback, index, init_auth
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('oauthlogin', oauth_callback),
-    path('', index, name='index'),
+    path('init_auth', init_auth),
+    path('', index, name='index')
 
 ]

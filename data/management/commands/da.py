@@ -112,8 +112,6 @@ class Command(BaseCommand):
         owner = User.objects.get(da_username=options['user'])
         self.__authorize(owner)
 
-        import pdb
-        pdb.set_trace()
         if options.get('fetch_deviations'):
             for dev in self.list_deviations(owner.da_username):
                 Deviation.objects.update_or_create(deviationid=dev['deviationid'], owner=owner, defaults={

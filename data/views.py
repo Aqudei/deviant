@@ -28,6 +28,17 @@ def index(request):
         return redirect(authorization_url)
 
 
+def init_auth(request):
+    scope = 'user browse comment.post'
+    deviant = OAuth2Session(settings.DA_CLIENT_ID,
+                            redirect_uri=settings.DA_REDIRECT_URL, scope=scope)
+
+    authorization_url, state = deviant.authorization_url(
+        settings.DA_AUTHORIZATION_URL)
+
+    return redirect(authorization_url)
+
+
 def oauth_callback(request):
     """
     docstring

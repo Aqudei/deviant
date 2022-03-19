@@ -33,7 +33,8 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
-    '.dwatcher.ga'
+    '.dwatcher.ga',
+    '.dasidekick.com'
 ]
 
 # Application definition
@@ -156,3 +157,7 @@ STATIC_ROOT = BASE_DIR / 'static'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
+
+
+CELERY_BROKER_URL = 'redis://localhost/0'
+CELERY_TIMEZONE = 'UTC'
