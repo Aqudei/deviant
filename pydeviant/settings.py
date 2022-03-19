@@ -160,5 +160,16 @@ MEDIA_ROOT = BASE_DIR / 'media'
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
 
 
-CELERY_BROKER_URL = 'redis://localhost/0'
-CELERY_TIMEZONE = 'UTC'
+# Celery Configuration Options
+CELERY_TIMEZONE = "US/Eastern"
+# CELERY_TASK_TIME_LIMIT = 60 * 60
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+
+CELERY_BACKEND = 'redis://localhost:6379/3'
+# CELERY_BROKER_URL = 'redis://localhost:6379/4'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/5'
+
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_ENABLE_UTC = True
