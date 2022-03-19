@@ -2,7 +2,7 @@
 # http://docs.celeryproject.org/en/latest/userguide/daemonizing.html#usage-systemd
 
 CELERY_APP="pydeviant"
-CELERYD_NODES="worker"
+CELERYD_NODES="w1"
 CELERYD_OPTS="--concurrency=4"
 CELERY_BIN="/var/www/deviant/venv/bin/celery"
 CELERYD_PID_FILE="/var/run/celery/%n.pid"
