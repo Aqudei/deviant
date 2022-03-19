@@ -4,9 +4,9 @@ After=network.target
 
 [Service]
 Type=simple
-User=celery
-Group=celery
-EnvironmentFile=/etc/conf.d/celery
+User=www-data
+Group=www-data
+EnvironmentFile=/var/www/deviant/deployment/celery
 WorkingDirectory=/var/www/deviant
 ExecStart=/bin/sh -c '${CELERY_BIN} -A ${CELERY_APP} beat  \
     --pidfile=${CELERYBEAT_PID_FILE} \
