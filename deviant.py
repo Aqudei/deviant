@@ -68,7 +68,7 @@ class DeviantArt:
             "expand": "user.stats"
         }
         url = f'https://www.deviantart.com/api/v1/oauth2/user/profile/{username}'
-        response = self.session.get(url, params=params)
+        response = self.deviant.get(url, params=params)
         if not response.status_code == 200:
             print(f"ERROR: {response.text}")
         response_json = response.json()
@@ -142,7 +142,7 @@ class DeviantArt:
 
             params['offset'] = response_json['next_offset']
             time.sleep(self.DEFAULT_SLEEP)
-            response = self.session.get(url, params=params)
+            response = self.deviant.get(url, params=params)
 
             if response.status_code == 429:
                 logger.error("Rate limit reached!")
