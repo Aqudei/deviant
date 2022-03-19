@@ -9,12 +9,11 @@ import os
 import time
 
 
-
 class DeviantArt:
     CLIENT_ID = ''
     CLIENT_SECRET = ''
     BASE_URL = 'https://www.deviantart.com/api/v1/oauth2'
-    DEFAULT_SLEEP = 2
+    DEFAULT_SLEEP = 8
 
     def __init__(self, user, *args, **kwargs):
         """
