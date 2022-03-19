@@ -9,10 +9,12 @@ import os
 import time
 
 
+
 class DeviantArt:
     CLIENT_ID = ''
     CLIENT_SECRET = ''
     BASE_URL = 'https://www.deviantart.com/api/v1/oauth2'
+    DEFAULT_SLEEP = 2
 
     def __init__(self, user, *args, **kwargs):
         """
@@ -29,6 +31,8 @@ class DeviantArt:
         payload = {
             "body": "Thanks for the fav!"
         }
+
+        time.sleep(self.DEFAULT_SLEEP)
         response = self.deviant.post(url, json=payload)
         if response.status_code == 200:
             return response.json()
@@ -117,7 +121,7 @@ class DeviantArt:
         params['limit'] = params.get('limit', 10)
         params['offset'] = params.get('offset', 0)
 
-        time.sleep(2)
+        time.sleep(self.DEFAULT_SLEEP)
         response = self.deviant.get(url, params=params)
 
         if response.status_code == 429:
@@ -137,7 +141,7 @@ class DeviantArt:
                 return
 
             params['offset'] = response_json['next_offset']
-            time.sleep(2)
+            time.sleep(self.DEFAULT_SLEEP)
             response = self.session.get(url, params=params)
 
             if response.status_code == 429:
