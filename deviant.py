@@ -1,34 +1,60 @@
+from asyncio.log import logger
 import pdb
+from urllib import response
 from django.conf import settings
 from oauthlib.oauth2 import BackendApplicationClient
 from requests_oauthlib import OAuth2Session
 import json
 import os
+import time
 
 
 class DeviantArt:
     CLIENT_ID = ''
     CLIENT_SECRET = ''
+    BASE_URL = 'https://www.deviantart.com/api/v1/oauth2'
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, user, *args, **kwargs):
         """
         docstring
         """
-        self.CLIENT_ID = kwargs.get('client_id', settings.DA_CLIENT_ID)
-        self.CLIENT_SECRET = kwargs.get(
-            'client_secret', settings.DA_CLIENT_SECRET)
+        self.user = user
+        self.__authorize()
 
-        client = BackendApplicationClient(client_id=self.CLIENT_ID)
-        oauth = OAuth2Session(client=client)
-        token = oauth.fetch_token(token_url='https://www.deviantart.com/oauth2/token', client_id=self.CLIENT_ID,
-                                  client_secret=self.CLIENT_SECRET)
+    def send_thanks(self, username):
+        """
+        docstring
+        """
+        url = self.BASE_URL + f'/comments/post/profile/{username}'
+        payload = {
+            "body": "Thanks for the fav!"
+        }
+        response = self.deviant.post(url, json=payload)
+        if response.status_code == 200:
+            return response.json()
 
-        self.token = token
+        logger.error(response.text)
 
-        print("Token:")
-        print(self.token)
-        self.session = OAuth2Session(
-            client_id=self.CLIENT_ID, token=self.token)
+    def __authorize(self):
+        """
+        docstring
+        """
+        extra = {
+            'client_id': settings.DA_CLIENT_ID,
+            'client_secret': settings.DA_CLIENT_SECRET,
+        }
+
+        def token_updater(token):
+            self.user.token = token
+            self.user.save()
+
+        self.deviant = OAuth2Session(
+            client_id=settings.DA_CLIENT_ID,
+            token=self.user.token,
+            auto_refresh_kwargs=extra,
+            auto_refresh_url=settings.DA_TOKEN_URL,
+            token_updater=token_updater
+        )
 
     def get_profile(self, username):
         """
@@ -41,36 +67,85 @@ class DeviantArt:
         response = self.session.get(url, params=params)
         if not response.status_code == 200:
             print(f"ERROR: {response.text}")
-            return
         response_json = response.json()
         return response_json
+
+    def list_favors(self, deviationid):
+        """
+        docstring
+        """
+        url = self.BASE_URL + "/deviation/whofaved"
+
+        params = {
+            "deviationid": deviationid,
+            "limit": 50
+        }
+
+        for item in self.__list_items(url=url, params=params):
+            yield item
+
+    def list_deviations(self, username=None):
+        """
+        docstring
+        """
+        url = 'https://www.deviantart.com/api/v1/oauth2/collections/all'
+        if username:
+            url = f'https://www.deviantart.com/api/v1/oauth2/collections/all/{username}'
+        params = {
+            "limit": 24
+        }
+        for item in self.__list_items(url=url, params=params):
+            yield item
 
     def list_watchers(self, username):
         """
         docstring
         """
         params = {
-            "offset": 0,
             "limit": 50
         }
         url = f'https://www.deviantart.com/api/v1/oauth2/user/watchers/{username}'
-        response = self.session.get(url, params=params)
+        for item in self.__list_items(url=url, params=params):
+            yield item
+
+    def __list_items(self, *args, **kwargs):
+        """
+        docstring
+        """
+        url = kwargs.pop('url', None)
+        params = kwargs.pop('params', {})
+        params['limit'] = params.get('limit', 10)
+        params['offset'] = params.get('offset', 0)
+
+        time.sleep(2)
+        response = self.deviant.get(url, params=params)
+
+        if response.status_code == 429:
+            logger.error("Rate limit reached!")
+            return
+
         if not response.status_code == 200:
-            print(f"ERROR: {response.text}")
+            logger.error(response.text)
             return
 
         response_json = response.json()
         while response_json.get('results') and len(response_json['results']) > 0:
-
             for r in response_json['results']:
                 yield r
 
             if not response_json['has_more']:
-                break
+                return
 
             params['offset'] = response_json['next_offset']
+            time.sleep(2)
             response = self.session.get(url, params=params)
+
+            if response.status_code == 429:
+                logger.error("Rate limit reached!")
+                return
+
             if not response.status_code == 200:
-                print(f"ERROR: {response.text}")
-                break
+                logger.error(f"{response.text}")
+                return
+
             response_json = response.json()

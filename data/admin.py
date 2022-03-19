@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Deviation, Favor, User, DAUser
+from .models import Deviation, Favor, Thank, User, DAUser
 from django.contrib.auth.admin import UserAdmin
 from django.utils.html import format_html
 from django.urls import resolve
@@ -45,7 +45,12 @@ class DeviationAdmin(admin.ModelAdmin):
 
 @admin.register(Favor)
 class FavorAdmin(admin.ModelAdmin):
-    list_display = ('deviation', 'userid', 'thanked', 'owner')
+    list_display = ('deviation', 'userid', 'owner')
+
+
+@admin.register(Thank)
+class ThankAdmin(admin.ModelAdmin):
+    list_display = ('owner', 'userid', 'username', 'sent')
 
 
 admin.site.register(DAUser, DAUserAdmin)

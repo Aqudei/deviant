@@ -21,11 +21,14 @@ class Thank(models.Model):
     owner = models.ForeignKey(User, verbose_name=_(
         "Owner"), on_delete=models.CASCADE)
     userid = models.UUIDField(_("DA User Id"))
+    username = models.CharField(
+        _("Username"), max_length=255, null=True, blank=True)
     sent = models.BooleanField(_("Sent"), default=False)
 
     class Meta:
         verbose_name = _("thank")
         verbose_name_plural = _("thanks")
+        unique_together = [['owner', 'userid']]
 
     def __str__(self):
         return f"{self.userid}"
@@ -72,11 +75,11 @@ class Deviation(models.Model):
     def get_absolute_url(self):
         return reverse("deviation_detail", kwargs={"pk": self.pk})
 
+
 class Favor(models.Model):
     deviation = models.ForeignKey(
         'data.Deviation', related_name='favors', on_delete=models.CASCADE)
     userid = models.UUIDField(_("User Id"), null=True, blank=True)
-    thanked = models.BooleanField(_("Thanked"), default=False)
     owner = models.ForeignKey("data.User", verbose_name=_(
         "Owner"), on_delete=models.SET_NULL, null=True)
 
@@ -85,7 +88,7 @@ class Favor(models.Model):
         verbose_name_plural = _("Favors")
 
     def __str__(self):
-        return f"{self.userid}-{self.owner}-{self.thanked}"
+        return f"{self.userid}-{self.owner}"
 
     def get_absolute_url(self):
         return reverse("Favor_detail", kwargs={"pk": self.pk})
