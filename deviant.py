@@ -13,7 +13,7 @@ class DeviantArt:
     CLIENT_ID = ''
     CLIENT_SECRET = ''
     BASE_URL = 'https://www.deviantart.com/api/v1/oauth2'
-    DEFAULT_SLEEP = 8
+    DEFAULT_SLEEP = 16
 
     def __init__(self, user, *args, **kwargs):
         """
@@ -24,7 +24,7 @@ class DeviantArt:
 
     def send_thanks(self, username):
         """
-        docstring
+        Send thanks to Deviant
         """
         url = self.BASE_URL + f'/comments/post/profile/{username}'
         payload = {
