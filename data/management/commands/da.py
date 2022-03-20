@@ -109,24 +109,5 @@ class Command(BaseCommand):
             yield item
 
     def handle(self, *args, **options):
-        owner = User.objects.get(da_username=options['user'])
-        self.__authorize(owner)
-
         if options.get('fetch_deviations'):
             tasks.cycle_deviations()
-
-        if options.get('process_favors'):
-            for dev in Deviation.objects.all():
-                favors = self.whofaved(dev.deviationid)
-                for f in favors:
-                    user = f['user']
-                    Favor.objects.get_or_create(
-                        deviation=dev, userid=user['userid'])
-
-                    thank = Thank.objects.get_or_create(
-                        user=user, userid=user['userid'])
-
-                    if not thank.sent:
-
-                        thank.sent = True
-                        thank.save()
