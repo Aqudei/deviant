@@ -204,7 +204,7 @@ LOGGING = {
         #     'level': 'ERROR',
         #     'propagate': False,
         # },
-        'pydeviant.data': {
+        'data': {
             'handlers': ['console'],
             'level': 'INFO',
             # 'filters': ['special']
