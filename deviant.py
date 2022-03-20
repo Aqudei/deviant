@@ -1,4 +1,3 @@
-from asyncio.log import logger
 import pdb
 from urllib import response
 from django.conf import settings
@@ -7,6 +6,9 @@ from requests_oauthlib import OAuth2Session
 import json
 import os
 import time
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class DeviantArt:
@@ -91,9 +93,9 @@ class DeviantArt:
         """
         docstring
         """
-        url = 'https://www.deviantart.com/api/v1/oauth2/collections/all'
+        url = f"{self.BASE_URL}/collections/all"
         if username:
-            url = f'https://www.deviantart.com/api/v1/oauth2/collections/all/{username}'
+            url = f"{self.BASE_URL}/collections/all/{username}"
         params = {
             "limit": 24
         }
@@ -107,7 +109,7 @@ class DeviantArt:
         params = {
             "limit": 50
         }
-        url = f'https://www.deviantart.com/api/v1/oauth2/user/watchers/{username}'
+        url = f'{self.BASE_URL}/user/watchers/{username}'
         for item in self.__list_items(url=url, params=params):
             yield item
 
