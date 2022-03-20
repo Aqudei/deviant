@@ -1,7 +1,9 @@
-from asyncio.log import logger
+import logging
 from celery import shared_task
 from deviant import DeviantArt
 from data import models
+
+logger = logging.getLogger(__name__)
 
 
 @shared_task
