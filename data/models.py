@@ -64,6 +64,7 @@ class Deviation(models.Model):
         "Owner"), on_delete=models.SET_NULL, null=True)
     deviationid = models.UUIDField(_("Deviation Id"))
     title = models.CharField(_("Title"), max_length=250)
+    favourites = models.IntegerField(_("Favourites"))
 
     class Meta:
         verbose_name = _("deviation")

@@ -16,8 +16,10 @@ def cycle_deviations():
 
         logger.info("Fetching Deviations...")
         for dev in da.list_deviations():
-            models.Deviation.objects.update_or_create(
-                deviationid=dev['deviationid'], owner=user, defaults={"title": dev['title'], })
+            favourites = dev['stats'].get('favourites', 0)
+
+            models.Deviation.objects.update_or_create(deviationid=dev['deviationid'], owner=user, defaults={
+                                                      "title": dev['title'], "favourites": favourites})
 
 
 @shared_task

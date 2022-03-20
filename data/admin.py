@@ -40,7 +40,7 @@ class DAUserAdmin(admin.ModelAdmin):
 
 @admin.register(Deviation)
 class DeviationAdmin(admin.ModelAdmin):
-    list_display = ('deviationid', 'title', 'owner')
+    list_display = ('deviationid', 'title', 'owner', 'favourites')
 
 
 @admin.register(Favor)
