@@ -12,7 +12,7 @@ from requests_oauthlib import OAuth2Session
 from django.conf import settings
 from data.models import *
 import logging
-
+from data import tasks
 logger = logging.getLogger(__name__)
 BASE_URL = 'https://www.deviantart.com/api/v1/oauth2'
 
@@ -113,10 +113,7 @@ class Command(BaseCommand):
         self.__authorize(owner)
 
         if options.get('fetch_deviations'):
-            for dev in self.list_deviations(owner.da_username):
-                Deviation.objects.update_or_create(deviationid=dev['deviationid'], owner=owner, defaults={
-                    "title": dev['title'],
-                })
+            tasks.cycle_deviations()
 
         if options.get('process_favors'):
             for dev in Deviation.objects.all():
