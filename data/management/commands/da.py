@@ -56,57 +56,6 @@ class Command(BaseCommand):
         with open(fullname, 'wt') as outfile:
             outfile.write(json.dumps(obj, indent=2))
 
-    def list_deviations(self, username=None):
-        """
-        docstring
-        """
-        params = {
-            "username": username
-        }
-        url = BASE_URL + '/collections/all'
-
-        for item in self.__get_items(url, params):
-            yield item
-
-    def __get_items(self, url, params):
-        """
-        docstring
-        """
-        response = self.deviant.get(url, params=params)
-
-        if response.status_code != 200:
-            logger.warning(response.text)
-            return
-
-        response_json = response.json()
-        for r in response_json['results']:
-            yield r
-
-        while response_json['has_more']:
-            params['offset'] = response_json['next_offset']
-            response = self.deviant.get(url, params=params)
-            if response.status_code != 200:
-                logger.warning(response.text)
-                return
-
-            response_json = response.json()
-
-            for r in response_json['results']:
-                yield r
-
-    def whofaved(self, deviationid):
-        """
-        docstring
-        """
-        url = BASE_URL + "/deviation/whofaved"
-
-        params = {
-            "deviationid": deviationid
-        }
-
-        for item in self.__get_items(url, params):
-            yield item
-
     def handle(self, *args, **options):
         if options.get('fetch_deviations'):
             tasks.cycle_deviations()
