@@ -45,7 +45,6 @@ class Command(BaseCommand):
         pass
 
     def add_arguments(self, parser):
-        parser.add_argument("user")
         parser.add_argument("--fetch-deviations", action='store_true')
         parser.add_argument("--process-favors", action='store_true')
 
