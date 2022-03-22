@@ -35,7 +35,7 @@ def cycle_favorites():
         for devobj in models.Deviation.objects.filter(owner=user):
             for fav in da.list_favors(devobj.deviationid):
                 user_who_fav = fav['user']
-                fav_timestimp = fav['time']
+                fav_timestamp = fav['time']
 
                 models.Favor.objects.update_or_create(
                     deviation=devobj,
@@ -43,7 +43,7 @@ def cycle_favorites():
                     username=user_who_fav['username'],
                     owner=user,
                     defaults={
-                        "fav_timestimp": fav_timestimp
+                        "fav_timestamp": fav_timestamp
                     }
                 )
 

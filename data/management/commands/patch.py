@@ -5,6 +5,7 @@ from django.conf import settings
 from django.utils import timezone
 from deviant import DeviantArt
 from data.models import *
+from data import tasks
 import json
 
 
@@ -14,6 +15,7 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument("--marksent", action='store_true')
         parser.add_argument("--sentnow", action='store_true')
+        parser.add_argument("--fetch-deviations", action='store_true')
 
     def __savejson(self, obj, filename):
         """
@@ -28,3 +30,6 @@ class Command(BaseCommand):
 
         if options['sentnow']:
             Thank.objects.all().update(sent_timestamp=timezone.now())
+
+        if options['fetch_deviations']:
+            tasks.cycle_deviations.apply_async()
