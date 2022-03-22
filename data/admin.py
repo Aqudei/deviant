@@ -50,7 +50,8 @@ class FavorAdmin(admin.ModelAdmin):
 
 @admin.register(Thank)
 class ThankAdmin(admin.ModelAdmin):
-    list_display = ('owner', 'userid', 'username', 'sent')
+    list_display = ('owner', 'userid', 'username', 'sent', 'sent_timestamp')
+    list_filter = ('sent',)
 
 
 admin.site.register(DAUser, DAUserAdmin)

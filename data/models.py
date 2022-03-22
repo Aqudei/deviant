@@ -24,6 +24,8 @@ class Thank(models.Model):
     username = models.CharField(
         _("Username"), max_length=255, null=True, blank=True)
     sent = models.BooleanField(_("Sent"), default=False)
+    sent_timestamp = models.DateTimeField(
+        _("Sent Timestamp"), auto_now=False, auto_now_add=False, null=True, blank=True)
 
     class Meta:
         verbose_name = _("thank")

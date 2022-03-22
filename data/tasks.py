@@ -2,6 +2,7 @@ import logging
 from celery import shared_task
 from deviant import DeviantArt
 from data import models
+from django.utils import timezone
 
 logger = logging.getLogger(__name__)
 
@@ -74,4 +75,5 @@ def cycle_sender():
         for thank in models.Thank.objects.filter(sent=False):
             da.send_thanks(thank.userid)
             thank.sent = True
+            thank.sent_timestamp = timezone.now()
             thank.save()
