@@ -34,8 +34,17 @@ def cycle_favorites():
         for devobj in models.Deviation.objects.filter(owner=user):
             for fav in da.list_favors(devobj.deviationid):
                 user_who_fav = fav['user']
-                models.Thank.objects.get_or_create(
-                    owner=user, userid=user_who_fav['userid'], username=user_who_fav['username'])
+                fav_timestimp = fav['time']
+
+                models.Favor.objects.update_or_create(
+                    deviation=devobj,
+                    userid=user_who_fav['userid'],
+                    username=user_who_fav['username'],
+                    owner=user,
+                    defaults={
+                        "fav_timestimp": fav_timestimp
+                    }
+                )
 
 
 @shared_task
@@ -43,9 +52,13 @@ def cycle_sender():
     """
     docstring
     """
-    for user in models.User.objects.filter(da_username='GrowGetter'):
-        da = DeviantArt(user)
 
+    for user in models.User.objects.filter(da_username='GrowGetter'):
+        for fav in models.Favor.objects.filter(owner=user):
+            models.Thank.objects.update_or_create(
+                owner=user, userid=fav.userid, defaults={'username': fav.username})
+
+        da = DeviantArt(user)
         logger.info("Sending Thanks...")
         for thank in models.Thank.objects.filter(sent=False):
             da.send_thanks(thank.userid)

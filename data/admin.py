@@ -43,9 +43,9 @@ class DeviationAdmin(admin.ModelAdmin):
     list_display = ('deviationid', 'title', 'owner', 'favourites')
 
 
-@admin.register(Favor)
-class FavorAdmin(admin.ModelAdmin):
-    list_display = ('deviation', 'userid', 'owner')
+# @admin.register(Favor)
+# class FavorAdmin(admin.ModelAdmin):
+#     list_display = ('deviation', 'userid', 'owner')
 
 
 @admin.register(Thank)

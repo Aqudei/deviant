@@ -83,6 +83,9 @@ class Favor(models.Model):
     userid = models.UUIDField(_("User Id"), null=True, blank=True)
     owner = models.ForeignKey("data.User", verbose_name=_(
         "Owner"), on_delete=models.SET_NULL, null=True)
+    username = models.CharField(
+        _("Username"), max_length=150, null=True, blank=True)
+    fav_timestimp = models.IntegerField(_("Fav Timestamp"), default=0)
 
     class Meta:
         verbose_name = _("Favor")
