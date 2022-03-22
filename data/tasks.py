@@ -48,6 +48,17 @@ def cycle_favorites():
 
 
 @shared_task
+def cycle_prepmsg(parameter_list):
+    """
+    docstring
+    """
+    for user in models.User.objects.filter(da_username='GrowGetter'):
+        for fav in models.Favor.objects.filter(owner=user):
+            models.Thank.objects.update_or_create(
+                owner=user, userid=fav.userid, defaults={'username': fav.username})
+
+
+@shared_task
 def cycle_sender():
     """
     docstring

@@ -85,7 +85,7 @@ class Favor(models.Model):
         "Owner"), on_delete=models.SET_NULL, null=True)
     username = models.CharField(
         _("Username"), max_length=150, null=True, blank=True)
-    fav_timestimp = models.IntegerField(_("Fav Timestamp"), default=0)
+    fav_timestamp = models.IntegerField(_("Fav Timestamp"), default=0)
 
     class Meta:
         verbose_name = _("Favor")
