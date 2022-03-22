@@ -2,6 +2,7 @@ import pdb
 from textwrap import indent
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
+from django.utils import timezone
 from deviant import DeviantArt
 from data.models import *
 import json
@@ -11,7 +12,8 @@ class Command(BaseCommand):
     help = ''
 
     def add_arguments(self, parser):
-        pass
+        parser.add_argument("--marksent", action='store_true')
+        parser.add_argument("--sentnow", action='store_true')
 
     def __savejson(self, obj, filename):
         """
@@ -21,5 +23,8 @@ class Command(BaseCommand):
             outfile.write(json.dumps(obj, indent=2))
 
     def handle(self, *args, **options):
+        if options['marksent']:
+            Thank.objects.all().update(sent=True)
 
-        Thank.objects.all().update(sent=True)
+        if options['sentnow']:
+            Thank.objects.all().update(sent_timestamp=timezone.now())
