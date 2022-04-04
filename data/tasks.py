@@ -73,7 +73,9 @@ def cycle_sender():
     da = DeviantArt(user)
     logger.info("Sending Thanks...")
     for thank in models.Thank.objects.filter(owner=user, sent=False):
-        da.send_thanks(thank.username)
+        response_json = da.send_thanks(thank.username)
+        logger.info(response_json)
+
         thank.sent = True
         thank.sent_timestamp = timezone.now()
         thank.save()

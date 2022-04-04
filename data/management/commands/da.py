@@ -65,6 +65,6 @@ class Command(BaseCommand):
             tasks.cycle_prepmsg()
         if options['do_send']:
             try:
-                logger.info(tasks.cycle_sender())
+                tasks.cycle_sender()
             except Exception as e:
                 logger.exception(e)
