@@ -34,7 +34,7 @@ class DeviantArt:
         }
 
         time.sleep(self.DEFAULT_SLEEP)
-        response = self.deviant.post(url, json=payload)
+        response = self.deviant.post(url, data=payload)
         if response.status_code == 200:
             return response.json()
 
