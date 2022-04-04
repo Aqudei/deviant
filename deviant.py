@@ -38,7 +38,7 @@ class DeviantArt:
         if response.status_code == 200:
             return response.json()
 
-        logger.error(response.text)
+        raise Exception(response.text)
 
     def __authorize(self):
         """
