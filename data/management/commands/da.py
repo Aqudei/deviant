@@ -48,6 +48,7 @@ class Command(BaseCommand):
         parser.add_argument("--fetch-deviations", action='store_true')
         parser.add_argument("--process-favors", action='store_true')
         parser.add_argument("--prepare-messages", action='store_true')
+        parser.add_argument("--do-send", action='store_true')
 
     def __savejson(self, obj, filename):
         """
@@ -62,3 +63,5 @@ class Command(BaseCommand):
             tasks.cycle_deviations()
         if options.get('prepare_messages'):
             tasks.cycle_prepmsg()
+        if options['do_send']:
+            tasks.cycle_sender()
