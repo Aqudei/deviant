@@ -55,8 +55,8 @@ def cycle_prepmsg():
     """
     for user in models.User.objects.filter(da_username='GrowGetter'):
         for fav in models.Favor.objects.filter(owner=user):
-            models.Thank.objects.update_or_create(
-                owner=user, userid=fav.userid, defaults={'username': fav.username})
+            models.Thank.objects.get_or_create(
+                owner=user, userid=fav.userid, username=fav.username)
 
 
 @shared_task
