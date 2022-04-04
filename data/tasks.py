@@ -49,7 +49,7 @@ def cycle_favorites():
 
 
 @shared_task
-def cycle_prepmsg(parameter_list):
+def cycle_prepmsg():
     """
     docstring
     """
