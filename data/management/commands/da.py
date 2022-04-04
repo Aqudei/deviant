@@ -64,7 +64,4 @@ class Command(BaseCommand):
         if options.get('prepare_messages'):
             tasks.cycle_prepmsg()
         if options['do_send']:
-            try:
-                tasks.cycle_sender()
-            except Exception as e:
-                logger.exception(e)
+            tasks.cycle_sender()
