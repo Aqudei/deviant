@@ -48,10 +48,16 @@ class FavorAdmin(admin.ModelAdmin):
     list_display = ('deviation', 'userid', 'owner', 'fav_timestamp')
 
 
+@admin.action(description='Mark selected as Sent')
+def mark_sent(modeladmin, request, queryset):
+    queryset.update(sent=True)
+
+
 @admin.register(Thank)
 class ThankAdmin(admin.ModelAdmin):
     list_display = ('owner', 'userid', 'username', 'sent', 'sent_timestamp')
     list_filter = ('sent',)
+    actions = [mark_sent]
 
 
 admin.site.register(DAUser, DAUserAdmin)

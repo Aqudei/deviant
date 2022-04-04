@@ -79,6 +79,5 @@ def cycle_sender():
             thank.sent = True
             thank.sent_timestamp = timezone.now()
             thank.save()
-            pass
         except Exception as e:
             logger.exception(e)
