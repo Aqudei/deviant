@@ -65,15 +65,15 @@ def cycle_sender():
     docstring
     """
 
-    for user in models.User.objects.filter(da_username='GrowGetter'):
-        for fav in models.Favor.objects.filter(owner=user):
-            models.Thank.objects.update_or_create(
-                owner=user, userid=fav.userid, defaults={'username': fav.username})
+    user = models.User.objects.filter(da_username='GrowGetter').first()
+    if not user:
+        logger.warning("User 'GrowGetter' cannot be found!")
+        return
 
-        da = DeviantArt(user)
-        logger.info("Sending Thanks...")
-        for thank in models.Thank.objects.filter(sent=False):
-            da.send_thanks(thank.userid)
-            thank.sent = True
-            thank.sent_timestamp = timezone.now()
-            thank.save()
+    da = DeviantArt(user)
+    logger.info("Sending Thanks...")
+    for thank in models.Thank.objects.filter(owner=user, sent=False):
+        da.send_thanks(thank.userid)
+        thank.sent = True
+        thank.sent_timestamp = timezone.now()
+        thank.save()
