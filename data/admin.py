@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 from data import forms
-from .models import Competitor, Deviation, Favor, Thank, User, DAUser
+from .models import *
 from django.contrib.auth.admin import UserAdmin
 from django.utils.html import format_html
 from django.urls import resolve
@@ -75,7 +75,7 @@ class ThankAdmin(admin.ModelAdmin):
     actions = [mark_sent]
 
 
-@admin.register(Competitor)
-class CompetitorAdmin(admin.ModelAdmin):
-    list_display = ('owner', 'da_username', 'da_userid', 'perc_shared_watchers',
-                    'total_submission', 'total_watchers', 'total_pageviews', 'date_started')
+# @admin.register(Competitor)
+# class CompetitorAdmin(admin.ModelAdmin):
+#     list_display = ('owner', 'da_username', 'da_userid', 'perc_shared_watchers',
+#                     'total_submission', 'total_watchers', 'total_pageviews', 'date_started')

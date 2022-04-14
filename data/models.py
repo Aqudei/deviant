@@ -101,28 +101,28 @@ class Favor(models.Model):
         return reverse("Favor_detail", kwargs={"pk": self.pk})
 
 
-class Competitor(models.Model):
+# class Competitor(models.Model):
 
-    owner = models.ForeignKey(User, verbose_name=_(
-        "Owner"), on_delete=models.CASCADE)
-    da_username = models.CharField(
-        _("Deviant Username"), max_length=100, null=True, blank=True, unique=True)
-    da_userid = models.CharField(
-        _("DA User Id"), max_length=100, null=True, blank=True)
-    perc_shared_watchers = models.FloatField(
-        _("Percent Shared Watchers"), default=0.0)
-    total_submission = models.IntegerField(_("Total Submissions"), default=0)
-    total_watchers = models.IntegerField(_("Total Watchers"), default=0)
-    total_pageviews = models.IntegerField(_("Total Pageviews"), default=0)
-    date_started = models.DateTimeField(
-        _("Date Started"), auto_now=False, auto_now_add=False, null=True, blank=True)
+#     owner = models.ForeignKey(User, verbose_name=_(
+#         "Owner"), on_delete=models.CASCADE)
+#     da_username = models.CharField(
+#         _("Deviant Username"), max_length=100, unique=True)
+#     da_userid = models.CharField(
+#         _("DA User Id"), max_length=100, null=True, blank=True)
+#     perc_shared_watchers = models.FloatField(
+#         _("Percent Shared Watchers"), default=0.0)
+#     total_submission = models.IntegerField(_("Total Submissions"), default=0)
+#     total_watchers = models.IntegerField(_("Total Watchers"), default=0)
+#     total_pageviews = models.IntegerField(_("Total Pageviews"), default=0)
+#     date_started = models.DateTimeField(
+#         _("Date Started"), auto_now=False, auto_now_add=False, null=True, blank=True)
 
-    class Meta:
-        verbose_name = _("competitor")
-        verbose_name_plural = _("competitors")
+#     class Meta:
+#         verbose_name = _("competitor")
+#         verbose_name_plural = _("competitors")
 
-    def __str__(self):
-        return self.da_username
+#     def __str__(self):
+#         return self.da_username
 
-    def get_absolute_url(self):
-        return reverse("competitor_detail", kwargs={"pk": self.pk})
+#     def get_absolute_url(self):
+#         return reverse("competitor_detail", kwargs={"pk": self.pk})
