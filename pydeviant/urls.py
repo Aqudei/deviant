@@ -15,12 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from data.views import oauth_callback, index, init_auth
+from data.views import oauth_callback, index, init_auth, post2profile
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('oauthlogin', oauth_callback),
     path('init_auth', init_auth),
+    path('post2profile', post2profile),
     path('', index, name='index')
 
 ]

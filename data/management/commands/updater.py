@@ -21,9 +21,11 @@ class Command(BaseCommand):
             outfile.write(json.dumps(obj, indent=2))
 
     def handle(self, *args, **options):
-        da = DeviantArt(settings.DA_CLIENT_ID, settings.DA_CLIENT_SECRET)
         da_username = settings.DA_USERNAME
         dj_user = User.objects.filter(da_username=da_username).first()
+
+        da = DeviantArt(dj_user)
+
         watchers = da.list_watchers(da_username)
         for w in watchers:
             obj, created = DAUser.objects.update_or_create(
@@ -31,10 +33,13 @@ class Command(BaseCommand):
                     "user": dj_user,
                     "userid": w['user'].get('userid')
                 })
+
             profile = da.get_profile(w['user']['username'])
             if profile:
-                obj.pageview_count = profile['stats']['profile_pageviews']
-                obj.deviations_count = profile['stats']['user_deviations']
-                obj.watchers_count = profile['user']['stats']['watchers']
+                if 'stats' in profile:
+                    obj.pageview_count = profile['stats']['profile_pageviews']
+                    obj.deviations_count = profile['stats']['user_deviations']
+                if 'stats' in profile['user']:
+                    obj.watchers_count = profile['user']['stats']['watchers']
                 # self.__savejson(profile, "./responses/profile.json")
                 obj.save()

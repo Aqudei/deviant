@@ -24,13 +24,13 @@ class DeviantArt:
         self.user = user
         self.__authorize()
 
-    def send_thanks(self, username):
+    def send_message(self, username, message='Thanks for the fav!'):
         """
         Send thanks to Deviant
         """
         url = self.BASE_URL + f'/comments/post/profile/{username}'
         payload = {
-            "body": "Thanks for the fav!"
+            "body": message
         }
 
         time.sleep(self.DEFAULT_SLEEP)

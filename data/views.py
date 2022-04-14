@@ -3,6 +3,8 @@ from django.shortcuts import redirect, render
 from requests_oauthlib import OAuth2Session
 from django.conf import settings
 import pickle
+
+from data import forms
 from .models import *
 
 # Create your views here.
@@ -63,3 +65,34 @@ def oauth_callback(request):
         )
 
     return redirect('/admin/data/user/')
+
+
+def views(request):
+    """
+    docstring
+    """
+    pass
+
+
+def post2profile(request):
+    """
+    docstring
+    """
+    if request.method == 'GET':
+        form = forms.MessageForm()
+        return render(request, 'data/message.html', {'form': form})
+
+    if request.method == 'POST':
+        form = forms.MessageForm(request.POST)
+        if not form.is_valid():
+            return render(request, 'data/message.html', {'form': form})
+        ids = [int(id_) for id_ in request.GET.get('ids').split(',')]
+        for da_user in DAUser.objects.filter(id__in=ids):
+            Thank.objects.create(
+                message=form.cleaned_data['message'],
+                owner=request.user,
+                userid=da_user.userid,
+                username=da_user.username
+            )
+
+        return redirect('/admin/data/dauser/')

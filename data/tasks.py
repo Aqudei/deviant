@@ -74,10 +74,26 @@ def cycle_sender():
     logger.info("Sending Thanks...")
     for thank in models.Thank.objects.filter(owner=user, sent=False):
         try:
-            response_json = da.send_thanks(thank.username)
+            response_json = da.send_message(thank.username, thank.message)
             logger.info(response_json)
             thank.sent = True
             thank.sent_timestamp = timezone.now()
             thank.save()
         except Exception as e:
             logger.exception(e)
+
+
+@shared_task
+def cycle_watcher():
+    """
+    docstring
+    """
+
+    user = models.User.objects.filter(da_username='GrowGetter').first()
+    if not user:
+        logger.warning("User 'GrowGetter' cannot be found!")
+        return
+
+    da = DeviantArt(user)
+    for watcher in da.list_watchers('GrowGetter'):
+        watcher_user = watcher['user']

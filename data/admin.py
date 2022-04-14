@@ -1,4 +1,9 @@
+from traceback import print_tb
 from django.contrib import admin
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
+
+from data import forms
 from .models import Deviation, Favor, Thank, User, DAUser
 from django.contrib.auth.admin import UserAdmin
 from django.utils.html import format_html
@@ -7,6 +12,7 @@ from django.urls import resolve
 # Register your models here.
 
 
+@admin.register(User)
 class MyUserAdmin(UserAdmin):
     """
     docstring
@@ -31,11 +37,19 @@ class MyUserAdmin(UserAdmin):
     )
 
 
+@admin.action(description='Post to profile')
+def post2profile(modeladmin, request, queryset):
+    selected = queryset.values_list('pk', flat=True)
+    return HttpResponseRedirect("/post2profile?ids={}".format(','.join(str(pk) for pk in selected)))
+
+
+@admin.register(DAUser)
 class DAUserAdmin(admin.ModelAdmin):
     list_display = ('username', 'watchers_count',
                     'pageview_count', 'deviations_count', 'notes')
     search_fields = ('username', 'notes')
     # list_filter = ('watchers_count',)
+    actions = [post2profile]
 
 
 @admin.register(Deviation)
@@ -55,10 +69,7 @@ def mark_sent(modeladmin, request, queryset):
 
 @admin.register(Thank)
 class ThankAdmin(admin.ModelAdmin):
-    list_display = ('owner', 'userid', 'username', 'sent', 'sent_timestamp')
+    list_display = ('owner', 'userid', 'username',
+                    'sent', 'sent_timestamp', 'message')
     list_filter = ('sent',)
     actions = [mark_sent]
-
-
-admin.site.register(DAUser, DAUserAdmin)
-admin.site.register(User, MyUserAdmin)

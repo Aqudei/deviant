@@ -1,0 +1,14 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+    <form method='post' action=''>
+        {% csrf_token %}
+        <p>
+            {{form}}
+        </p>
+        <p>
+            <input type="hidden" name="action" value="post2profile" />
+            <input type="submit" name="apply" value="Send"/>
+        </p>
+    </form>    
+{% endblock %}

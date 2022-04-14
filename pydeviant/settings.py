@@ -147,7 +147,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 DA_CLIENT_ID = os.environ.get('CLIENT_ID')
 DA_CLIENT_SECRET = os.environ.get('CLIENT_SECRET')
-DA_USERNAME = 'growgetter'
+DA_USERNAME = 'GrowGetter'
 DA_TOKEN_URL = 'https://www.deviantart.com/oauth2/token'
 DA_REDIRECT_URL = os.environ.get('DA_REDIRECT_URL')
 DA_AUTHORIZATION_URL = os.environ.get('DA_AUTHORIZATION_URL')
