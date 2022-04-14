@@ -118,7 +118,7 @@ class Competitor(models.Model):
         _("Date Started"), auto_now=False, auto_now_add=False, null=True, blank=True)
 
     watchers = models.ManyToManyField(
-        "data.DAUser", verbose_name=_("Watchers"), related_name='competitors')
+        "data.DAUser", verbose_name=_("Watchers"), related_name='competitors', blank=True)
 
     class Meta:
         verbose_name = _("competitor")

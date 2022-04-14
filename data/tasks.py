@@ -1,5 +1,4 @@
 import logging
-from async_timeout import timeout
 from celery import shared_task
 from deviant import DeviantArt
 from data import models
