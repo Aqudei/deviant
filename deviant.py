@@ -21,6 +21,7 @@ class DeviantArt:
         """
         docstring
         """
+        self.DEFAULT_SLEEP = kwargs.get('timeout', 32)
         self.user = user
         self.__authorize()
 
@@ -102,7 +103,7 @@ class DeviantArt:
         for item in self.__list_items(url=url, params=params):
             yield item
 
-    def list_watchers(self, username):
+    def list_watchers(self, username, *args, **kwargs):
         """
         docstring
         """
@@ -110,7 +111,7 @@ class DeviantArt:
             "limit": 50
         }
         url = f'{self.BASE_URL}/user/watchers/{username}'
-        for item in self.__list_items(url=url, params=params):
+        for item in self.__list_items(url=url, params=params, **kwargs):
             yield item
 
     def __list_items(self, *args, **kwargs):

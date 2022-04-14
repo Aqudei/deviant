@@ -46,6 +46,8 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument("--fetch-deviations", action='store_true')
+        parser.add_argument("--process-competitor", action='store_true')
+
         parser.add_argument("--process-favors", action='store_true')
         parser.add_argument("--prepare-messages", action='store_true')
         parser.add_argument("--do-send", action='store_true')
@@ -65,3 +67,5 @@ class Command(BaseCommand):
             tasks.cycle_prepmsg()
         if options['do_send']:
             tasks.cycle_sender()
+        if options['process_competitor']:
+            tasks.cycle_competitor()

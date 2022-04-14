@@ -97,3 +97,23 @@ def cycle_watcher():
     da = DeviantArt(user)
     for watcher in da.list_watchers('GrowGetter'):
         watcher_user = watcher['user']
+
+
+@shared_task
+def cycle_competitor():
+    """
+    docstring
+    """
+    user = models.User.objects.filter(da_username='GrowGetter').first()
+    if not user:
+        return
+
+    da = DeviantArt(user, timeout=2)
+    for competitor in models.Competitor.objects.all():
+        watchers = da.list_watchers(competitor.da_username)
+        for watcher in watchers:
+            watcher_obj, created = models.DAUser.objects.update_or_create(
+                username=watcher['user']['username'], defaults={
+                    "userid":  watcher['user']['userid']
+                })
+            competitor.add(watcher_obj)
