@@ -75,7 +75,7 @@ class ThankAdmin(admin.ModelAdmin):
     actions = [mark_sent]
 
 
-# @admin.register(Competitor)
-# class CompetitorAdmin(admin.ModelAdmin):
-#     list_display = ('owner', 'da_username', 'da_userid', 'perc_shared_watchers',
-#                     'total_submission', 'total_watchers', 'total_pageviews', 'date_started')
+@admin.register(Competitor)
+class CompetitorAdmin(admin.ModelAdmin):
+    list_display = ('owner', 'da_username', 'da_userid', 'perc_shared_watchers',
+                    'total_submission', 'total_watchers', 'total_pageviews', 'date_started')
