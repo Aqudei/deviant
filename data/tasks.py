@@ -1,4 +1,5 @@
 import logging
+from async_timeout import timeout
 from celery import shared_task
 from deviant import DeviantArt
 from data import models
@@ -108,7 +109,7 @@ def cycle_competitor():
     if not user:
         return
 
-    da = DeviantArt(user, timeout=2)
+    da = DeviantArt(user, timeout=10)
     for competitor in models.Competitor.objects.all():
         watchers = da.list_watchers(competitor.da_username)
         for watcher in watchers:
@@ -116,4 +117,4 @@ def cycle_competitor():
                 username=watcher['user']['username'], defaults={
                     "userid":  watcher['user']['userid']
                 })
-            competitor.add(watcher_obj)
+            competitor.watchers.add(watcher_obj)
