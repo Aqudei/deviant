@@ -45,8 +45,14 @@ def post2profile(modeladmin, request, queryset):
 
 @admin.register(DAUser)
 class DAUserAdmin(admin.ModelAdmin):
+    @admin.display(description='Competitor Count')
+    def competitor_count(self, obj):
+        """
+        docstring
+        """
+        return obj.competitors.count()
     list_display = ('username', 'watchers_count',
-                    'pageview_count', 'deviations_count', 'notes')
+                    'pageview_count', 'deviations_count', 'competitor_count', 'notes')
     search_fields = ('username', 'notes')
     # list_filter = ('watchers_count',)
     actions = [post2profile]
