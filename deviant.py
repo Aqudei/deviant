@@ -22,7 +22,7 @@ class DeviantArt:
         """
         docstring
         """
-        self.DEFAULT_SLEEP = kwargs.get('timeout', 60)
+        self.DEFAULT_SLEEP = kwargs.get('timeout', 120)
         self.DEFAULT_OFFSET = kwargs.get('offset', 0)
 
         self.user = user
