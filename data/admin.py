@@ -89,4 +89,13 @@ class CompetitorAdmin(admin.ModelAdmin):
 
 @admin.register(MyTask)
 class MyTaskAdmin(admin.ModelAdmin):
-    list_display = ('name', 'status', 'last_ran')
+    list_display = ('name', 'status', 'last_ran', 'last_error')
+
+    def last_error(self, obj):
+        """
+        docstring
+        """
+        if obj.last_error:
+            return obj.last_error[:20]
+
+        return obj.last_error

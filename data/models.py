@@ -148,6 +148,7 @@ class MyTask(models.Model):
         _("Status"), max_length=50, choices=STATUSES, default='IDLE')
     last_ran = models.DateTimeField(
         _("Last Ran"), auto_now=True, auto_now_add=False, null=True, blank=True)
+    last_error = models.TextField(_("Last Error"), blank=True, null=True)
 
     class Meta:
         verbose_name = _("My Task")

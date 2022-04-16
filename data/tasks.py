@@ -1,4 +1,5 @@
 import logging
+import traceback
 from celery import shared_task
 from deviant import DeviantArt
 from data import models
@@ -134,6 +135,7 @@ def cycle_competitor():
             competitor.save()
     except Exception as e:
         logger.exception(e)
+        mytask.last_error = traceback.format_exc()
     finally:
         mytask.last_run = timezone.now()
         mytask.status = 'IDLE'
