@@ -17,6 +17,7 @@ class Command(BaseCommand):
         parser.add_argument("--sentnow", action='store_true')
         parser.add_argument("--fetch-deviations", action='store_true')
         parser.add_argument("--fetch-favourites", action='store_true')
+        parser.add_argument("--clear-watchers", action='store_true')
 
     def __savejson(self, obj, filename):
         """
@@ -26,6 +27,10 @@ class Command(BaseCommand):
             outfile.write(json.dumps(obj, indent=2))
 
     def handle(self, *args, **options):
+        if options['clear_watchers']:
+            for competitor in Competitor.objects.all():
+                competitor.watchers.clear()
+
         if options['marksent']:
             Thank.objects.all().update(sent=True)
 

@@ -136,10 +136,12 @@ def cycle_competitor():
         watchers = da.list_watchers(competitor.da_username)
         for watcher in watchers:
             logger.info(watcher)
-            watcher_obj, created = models.DAUser.objects.update_or_create(
-                username=watcher['user']['username'], defaults={
-                    "userid":  watcher['user']['userid']
-                })
+            watcher_obj = models.DAUser.objects.filter(
+                username=watcher['user']['username']).first()
+
+            if not watcher_obj:
+                continue
+
             competitor.watchers.add(watcher_obj)
             competitor.updated_at = timezone.now()
             competitor.save()
