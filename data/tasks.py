@@ -135,5 +135,6 @@ def cycle_competitor():
     except Exception as e:
         logger.exception(e)
     finally:
+        mytask.last_run = timezone.now()
         mytask.status = 'IDLE'
         mytask.save()
