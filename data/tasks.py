@@ -1,6 +1,7 @@
 import logging
 import traceback
 from celery import shared_task
+from django.conf import settings
 from deviant import DeviantArt
 from data import models
 from django.utils import timezone
@@ -90,14 +91,19 @@ def cycle_watcher():
     docstring
     """
 
-    user = models.User.objects.filter(da_username='GrowGetter').first()
-    if not user:
+    dj_user = models.User.objects.filter(
+        da_username=settings.DA_USERNAME).first()
+    if not dj_user:
         logger.warning("User 'GrowGetter' cannot be found!")
         return
 
-    da = DeviantArt(user)
-    for watcher in da.list_watchers('GrowGetter'):
+    da = DeviantArt(dj_user)
+    for watcher in da.list_watchers(settings.DA_USERNAME):
         watcher_user = watcher['user']
+        obj, created = models.DAUser.objects.update_or_create(
+            username=watcher_user['username'], user=dj_user, defaults={
+                "userid": watcher_user.get('userid')
+            })
 
 
 @shared_task
