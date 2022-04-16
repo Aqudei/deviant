@@ -111,7 +111,7 @@ def cycle_competitor():
         return
 
     mytask, created = models.MyTask.objects.get_or_create(
-        name='COMPETITORS', owner=user).first()
+        name='COMPETITORS', owner=user)
 
     if mytask.status == 'RUNNING':
         return
