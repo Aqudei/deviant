@@ -119,3 +119,5 @@ def cycle_competitor():
                 "userid":  watcher['user']['userid']
             })
         competitor.watchers.add(watcher_obj)
+        competitor.updated_at = timezone.now()
+        competitor.save()
