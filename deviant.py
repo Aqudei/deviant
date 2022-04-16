@@ -15,13 +15,16 @@ class DeviantArt:
     CLIENT_ID = ''
     CLIENT_SECRET = ''
     BASE_URL = 'https://www.deviantart.com/api/v1/oauth2'
-    DEFAULT_SLEEP = 60
+    DEFAULT_SLEEP = 120
+    DEFAULT_OFFSET = 0
 
     def __init__(self, user, *args, **kwargs):
         """
         docstring
         """
         self.DEFAULT_SLEEP = kwargs.get('timeout', 60)
+        self.DEFAULT_OFFSET = kwargs.get('offset', 0)
+
         self.user = user
         self.__authorize()
 
@@ -123,7 +126,7 @@ class DeviantArt:
         url = kwargs.pop('url', None)
         params = kwargs.pop('params', {})
         params['limit'] = params.get('limit', 10)
-        params['offset'] = params.get('offset', 0)
+        params['offset'] = params.get('offset', self.DEFAULT_OFFSET)
 
         # time.sleep(self.DEFAULT_SLEEP)
         response = self.deviant.get(url, params=params)

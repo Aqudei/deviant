@@ -11,7 +11,7 @@ class Command(BaseCommand):
     help = ''
 
     def add_arguments(self, parser):
-        pass
+        parser.add_argument('--offset', type=int, default=0)
 
     def __savejson(self, obj, filename):
         """
@@ -24,7 +24,7 @@ class Command(BaseCommand):
         da_username = settings.DA_USERNAME
         dj_user = User.objects.filter(da_username=da_username).first()
 
-        da = DeviantArt(dj_user)
+        da = DeviantArt(dj_user, options['offset'])
 
         watchers = da.list_watchers(da_username)
         for w in watchers:
