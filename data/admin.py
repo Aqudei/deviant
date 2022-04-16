@@ -85,3 +85,8 @@ class ThankAdmin(admin.ModelAdmin):
 class CompetitorAdmin(admin.ModelAdmin):
     list_display = ('owner', 'da_username', 'da_userid', 'perc_shared_watchers', 'total_submission',
                     'total_watchers', 'total_pageviews', 'date_started', 'created_at', 'updated_at')
+
+
+@admin.register(MyTask)
+class MyTaskAdmin(admin.ModelAdmin):
+    list_display = ('name', 'status', 'last_ran')

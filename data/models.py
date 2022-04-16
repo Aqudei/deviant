@@ -146,6 +146,8 @@ class MyTask(models.Model):
     name = models.CharField(_("Task"), max_length=50, choices=NAMES)
     status = models.CharField(
         _("Status"), max_length=50, choices=STATUSES, default='IDLE')
+    last_ran = models.DateTimeField(
+        _("Last Ran"), auto_now=True, auto_now_add=False, null=True, blank=True)
 
     class Meta:
         verbose_name = _("My Task")
