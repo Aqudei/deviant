@@ -15,18 +15,21 @@ class DeviantArt:
     CLIENT_ID = ''
     CLIENT_SECRET = ''
     BASE_URL = 'https://www.deviantart.com/api/v1/oauth2'
-    DEFAULT_SLEEP = 120
+    DEFAULT_SLEEP = 600
     DEFAULT_OFFSET = 0
 
     def __init__(self, user, *args, **kwargs):
         """
         docstring
         """
-        self.DEFAULT_SLEEP = kwargs.get('timeout', 120)
+        self.DEFAULT_SLEEP = kwargs.get('timeout', 600)
         self.DEFAULT_OFFSET = kwargs.get('offset', 0)
 
         self.user = user
         self.__authorize()
+
+        logger.info("Deviant API Timeout: {} seconds".format(
+            self.DEFAULT_SLEEP))
 
     def send_message(self, username, message='Thanks for the fav!'):
         """
