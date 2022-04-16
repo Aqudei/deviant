@@ -148,6 +148,7 @@ class DeviantArt:
                 return
 
             params['offset'] = response_json['next_offset']
+            logger.info("Next Offset: {}".format(response_json['next_offset']))
             time.sleep(self.DEFAULT_SLEEP)
             response = self.deviant.get(url, params=params)
 
