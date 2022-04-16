@@ -80,6 +80,8 @@ class Command(BaseCommand):
         """
         docstring
         """
+        logger.info("Fetching watchers...")
+
         da_username = settings.DA_USERNAME
         dj_user = User.objects.filter(da_username=da_username).first()
 

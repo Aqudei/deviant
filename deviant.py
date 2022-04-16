@@ -139,7 +139,8 @@ class DeviantArt:
             return
 
         if not response.status_code == 200:
-            logger.error(response.text)
+            logger.error("Status Code: {}, Response Text: {}".format(
+                response.status_code, response.text))
             return
 
         response_json = response.json()

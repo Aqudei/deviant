@@ -67,22 +67,29 @@ def cycle_sender():
     docstring
     """
 
-    user = models.User.objects.filter(da_username='GrowGetter').first()
+    user = models.User.objects.filter(da_username=settings.DA_USERNAME).first()
     if not user:
-        logger.warning("User 'GrowGetter' cannot be found!")
+        logger.warning("User '{}' cannot be found!".format(
+            settings.DA_USERNAME))
         return
 
     da = DeviantArt(user)
+
     logger.info("Sending Thanks...")
-    for thank in models.Thank.objects.filter(owner=user, sent=False):
-        try:
-            response_json = da.send_message(thank.username, thank.message)
-            logger.info(response_json)
-            thank.sent = True
-            thank.sent_timestamp = timezone.now()
-            thank.save()
-        except Exception as e:
-            logger.exception(e)
+
+    thank = models.Thank.objects.filter(owner=user, sent=False).first()
+    if not thank:
+        return
+
+    try:
+        response_json = da.send_message(thank.username, thank.message)
+        logger.info(response_json)
+    except Exception as e:
+        logger.exception(e)
+    finally:
+        thank.sent = True
+        thank.sent_timestamp = timezone.now()
+        thank.save()
 
 
 @shared_task
