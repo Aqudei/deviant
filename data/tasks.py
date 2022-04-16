@@ -104,22 +104,36 @@ def cycle_competitor():
     """
     docstring
     """
-
     user = models.User.objects.filter(da_username='GrowGetter').first()
     if not user:
         logger.info("No user found!")
         return
 
-    da = DeviantArt(user, timeout=60)
-    competitor = models.Competitor.objects.order_by('updated_at').first()
+    mytask, created = models.MyTask.objects.get_or_create(
+        name='COMPETITORS', owner=user).first()
 
-    watchers = da.list_watchers(competitor.da_username)
-    for watcher in watchers:
-        logger.info(watcher)
-        watcher_obj, created = models.DAUser.objects.update_or_create(
-            username=watcher['user']['username'], defaults={
-                "userid":  watcher['user']['userid']
-            })
-        competitor.watchers.add(watcher_obj)
-        competitor.updated_at = timezone.now()
-        competitor.save()
+    if mytask.status == 'RUNNING':
+        return
+
+    mytask.status = 'RUNNING'
+    mytask.save()
+
+    try:
+        da = DeviantArt(user, timeout=60)
+        competitor = models.Competitor.objects.order_by('updated_at').first()
+
+        watchers = da.list_watchers(competitor.da_username)
+        for watcher in watchers:
+            logger.info(watcher)
+            watcher_obj, created = models.DAUser.objects.update_or_create(
+                username=watcher['user']['username'], defaults={
+                    "userid":  watcher['user']['userid']
+                })
+            competitor.watchers.add(watcher_obj)
+            competitor.updated_at = timezone.now()
+            competitor.save()
+    except Exception as e:
+        logger.exception(e)
+    finally:
+        mytask.status = 'IDLE'
+        mytask.save()

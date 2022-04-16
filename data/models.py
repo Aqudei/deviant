@@ -136,3 +136,24 @@ class Competitor(models.Model):
         return reverse("competitor_detail", kwargs={"pk": self.pk})
 
 
+class MyTask(models.Model):
+    STATUSES = (('RUNNING', 'RUNNING'), ('IDLE', 'IDLE'))
+    NAMES = (('COMPETITORS', 'COMPETITORS'), ('FAVOURITES',
+             'FAVOURITES'), ('DEVIATIONS', 'DEVIATIONS'))
+
+    owner = models.ForeignKey("data.User", verbose_name=_(
+        "User"), on_delete=models.CASCADE)
+    name = models.CharField(_("Task"), max_length=50, choices=NAMES)
+    status = models.CharField(
+        _("Status"), max_length=50, choices=STATUSES, default='IDLE')
+
+    class Meta:
+        verbose_name = _("My Task")
+        verbose_name_plural = _("My Tasks")
+        unique_together = ['owner', 'name']
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse("mytask_detail", kwargs={"pk": self.pk})
