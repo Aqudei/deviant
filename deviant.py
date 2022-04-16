@@ -72,7 +72,9 @@ class DeviantArt:
         url = f'https://www.deviantart.com/api/v1/oauth2/user/profile/{username}'
         response = self.deviant.get(url, params=params)
         if not response.status_code == 200:
-            print(f"ERROR: {response.text}")
+            logger.error(f"{response.text}")
+            return
+
         response_json = response.json()
         return response_json
 

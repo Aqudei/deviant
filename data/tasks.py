@@ -56,8 +56,8 @@ def cycle_prepmsg():
     """
     for user in models.User.objects.filter(da_username='GrowGetter'):
         for fav in models.Favor.objects.filter(owner=user):
-            models.Thank.objects.get_or_create(
-                owner=user, userid=fav.userid, username=fav.username)
+            models.Thank.objects.update_or_create(
+                owner=user, userid=fav.userid, defaults={'username': fav.username})
 
 
 @shared_task
@@ -122,6 +122,16 @@ def cycle_competitor():
     try:
         da = DeviantArt(user, timeout=60)
         competitor = models.Competitor.objects.order_by('updated_at').first()
+        profile = da.get_profile(competitor.da_username)
+        if profile:
+            competitor.da_userid = profile.get(
+                'user', {}).get('userid')
+            competitor.total_watchers = profile.get(
+                'user', {}).get('stats', {}).get('watchers', 0)
+            competitor.total_submission = profile.get(
+                'stats', {}).get('user_deviations', 0)
+            competitor.total_pageviews = profile.get(
+                'stats', {}).get('profile_pageviews', 0)
 
         watchers = da.list_watchers(competitor.da_username)
         for watcher in watchers:
