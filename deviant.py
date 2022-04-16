@@ -15,13 +15,13 @@ class DeviantArt:
     CLIENT_ID = ''
     CLIENT_SECRET = ''
     BASE_URL = 'https://www.deviantart.com/api/v1/oauth2'
-    DEFAULT_SLEEP = 32
+    DEFAULT_SLEEP = 60
 
     def __init__(self, user, *args, **kwargs):
         """
         docstring
         """
-        self.DEFAULT_SLEEP = kwargs.get('timeout', 32)
+        self.DEFAULT_SLEEP = kwargs.get('timeout', 60)
         self.user = user
         self.__authorize()
 

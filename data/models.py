@@ -117,6 +117,11 @@ class Competitor(models.Model):
     date_started = models.DateTimeField(
         _("Date Started"), auto_now=False, auto_now_add=False, null=True, blank=True)
 
+    updated_at = models.DateTimeField(
+        _("Updated At"), auto_now=True, auto_now_add=False)
+    created_at = models.DateTimeField(
+        _("Created At"), auto_now=False, auto_now_add=True)
+
     watchers = models.ManyToManyField(
         "data.DAUser", verbose_name=_("Watchers"), related_name='competitors', blank=True)
 
@@ -129,3 +134,5 @@ class Competitor(models.Model):
 
     def get_absolute_url(self):
         return reverse("competitor_detail", kwargs={"pk": self.pk})
+
+
