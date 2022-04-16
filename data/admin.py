@@ -51,8 +51,8 @@ class DAUserAdmin(admin.ModelAdmin):
         docstring
         """
         return obj.competitors.count()
-    list_display = ('username', 'watchers_count',
-                    'pageview_count', 'deviations_count', 'competitor_count', 'notes')
+    list_display = ('username', 'watchers_count', 'pageview_count',
+                    'deviations_count', 'competitor_count', 'notes', 'updated_at', 'created_at')
     search_fields = ('username', 'notes')
     # list_filter = ('watchers_count',)
     actions = [post2profile]

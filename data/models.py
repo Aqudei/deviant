@@ -50,6 +50,11 @@ class DAUser(models.Model):
         "User"), on_delete=models.CASCADE, null=True, blank=True)
     userid = models.UUIDField(_("DA User Id"), null=True, blank=True)
     notes = models.TextField(_("Notes"), null=True, blank=True)
+    
+    updated_at = models.DateTimeField(
+        _("Updated At"), auto_now=True, auto_now_add=False)
+    created_at = models.DateTimeField(
+        _("Created At"), auto_now=False, auto_now_add=True)
 
     class Meta:
         verbose_name = _("Watcher")
