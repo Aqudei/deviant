@@ -123,7 +123,7 @@ class DeviantArt:
         params['limit'] = params.get('limit', 10)
         params['offset'] = params.get('offset', 0)
 
-        time.sleep(self.DEFAULT_SLEEP)
+        # time.sleep(self.DEFAULT_SLEEP)
         response = self.deviant.get(url, params=params)
 
         if response.status_code == 429:

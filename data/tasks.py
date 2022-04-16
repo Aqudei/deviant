@@ -107,6 +107,7 @@ def cycle_competitor():
 
     user = models.User.objects.filter(da_username='GrowGetter').first()
     if not user:
+        logger.info("No user found!")
         return
 
     da = DeviantArt(user, timeout=60)
@@ -114,6 +115,7 @@ def cycle_competitor():
 
     watchers = da.list_watchers(competitor.da_username)
     for watcher in watchers:
+        logger.info(watcher)
         watcher_obj, created = models.DAUser.objects.update_or_create(
             username=watcher['user']['username'], defaults={
                 "userid":  watcher['user']['userid']

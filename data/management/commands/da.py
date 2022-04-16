@@ -68,4 +68,5 @@ class Command(BaseCommand):
         if options['do_send']:
             tasks.cycle_sender()
         if options['process_competitors']:
+            logger.info("Processing competitors...")
             tasks.cycle_competitor()
