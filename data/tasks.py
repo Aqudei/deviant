@@ -159,9 +159,8 @@ def cycle_competitor_watcher():
     """
     docstring
     """
-    mytask = models.MyTask.objects.filter(
-        name='COMPETITOR_WATCHERS').first()
-
+    mytask, created = models.MyTask.objects.get_or_create(
+        name='COMPETITOR_WATCHERS', owner=user)
     if mytask.status == 'RUNNING':
         return
 
