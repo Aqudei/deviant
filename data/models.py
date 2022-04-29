@@ -143,8 +143,8 @@ class Competitor(models.Model):
 
 class MyTask(models.Model):
     STATUSES = (('RUNNING', 'RUNNING'), ('IDLE', 'IDLE'))
-    NAMES = (('COMPETITORS', 'COMPETITORS'), ('FAVOURITES',
-             'FAVOURITES'), ('DEVIATIONS', 'DEVIATIONS'))
+    NAMES = (('COMPETITORS', 'COMPETITORS'), ('FAVOURITES', 'FAVOURITES'),
+             ('DEVIATIONS', 'DEVIATIONS'), ('COMPETITOR_WATCHERS', 'COMPETITOR_WATCHERS'))
 
     owner = models.ForeignKey("data.User", verbose_name=_(
         "User"), on_delete=models.CASCADE)

@@ -159,17 +159,26 @@ def cycle_competitor_watcher():
     """
     docstring
     """
-    competitor = models.Competitor.objects.order_by('updated_at').first()
-    if not competitor:
-        return
-    user = models.User.objects.filter(da_username='GrowGetter').first()
+    mytask = models.MyTask.objects.filter(
+        name='COMPETITOR_WATCHERS').first()
 
-    if not user:
-        logger.info("No user found!")
+    if mytask.status == 'RUNNING':
         return
-    da = DeviantArt(user, timeout=60)
+
+    mytask.status = 'RUNNING'
+    mytask.save()
 
     try:
+        competitor = models.Competitor.objects.order_by('updated_at').first()
+        if not competitor:
+            return
+        user = models.User.objects.filter(da_username='GrowGetter').first()
+
+        if not user:
+            logger.info("No user found!")
+            return
+        da = DeviantArt(user, timeout=60)
+
         watchers = da.list_watchers(competitor.da_username)
         for watcher in watchers:
             logger.info(watcher)
@@ -183,4 +192,9 @@ def cycle_competitor_watcher():
             competitor.save()
 
     except Exception as e:
-        pass
+        logger.exception(e)
+        mytask.last_error = traceback.format_exc()
+    finally:
+        mytask.last_run = timezone.now()
+        mytask.status = 'IDLE'
+        mytask.save()
