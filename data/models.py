@@ -50,11 +50,11 @@ class DAUser(models.Model):
         "User"), on_delete=models.CASCADE, null=True, blank=True)
     userid = models.UUIDField(_("DA User Id"), null=True, blank=True)
     notes = models.TextField(_("Notes"), null=True, blank=True)
-    
+
     updated_at = models.DateTimeField(
-        _("Updated At"), auto_now=True, auto_now_add=False)
+        _("Updated At"), auto_now=True, auto_now_add=False, null=True, blank=True)
     created_at = models.DateTimeField(
-        _("Created At"), auto_now=False, auto_now_add=True)
+        _("Created At"), auto_now=False, auto_now_add=True, null=True, blank=True)
 
     class Meta:
         verbose_name = _("Watcher")
@@ -123,9 +123,9 @@ class Competitor(models.Model):
         _("Date Started"), auto_now=False, auto_now_add=False, null=True, blank=True)
 
     updated_at = models.DateTimeField(
-        _("Updated At"), auto_now=True, auto_now_add=False)
+        _("Updated At"), auto_now=True, auto_now_add=False, null=True, blank=True)
     created_at = models.DateTimeField(
-        _("Created At"), auto_now=False, auto_now_add=True)
+        _("Created At"), auto_now=False, auto_now_add=True, null=True, blank=True)
 
     watchers = models.ManyToManyField(
         "data.DAUser", verbose_name=_("Watchers"), related_name='competitors', blank=True)

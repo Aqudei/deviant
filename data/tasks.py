@@ -145,7 +145,31 @@ def cycle_competitor():
                 'stats', {}).get('user_deviations', 0)
             competitor.total_pageviews = profile.get(
                 'stats', {}).get('profile_pageviews', 0)
+            competitor.save()
+    except Exception as e:
+        logger.exception(e)
+        mytask.last_error = traceback.format_exc()
+    finally:
+        mytask.last_run = timezone.now()
+        mytask.status = 'IDLE'
+        mytask.save()
 
+
+def cycle_competitor_watcher():
+    """
+    docstring
+    """
+    competitor = models.Competitor.objects.order_by('updated_at').first()
+    if not competitor:
+        return
+    user = models.User.objects.filter(da_username='GrowGetter').first()
+
+    if not user:
+        logger.info("No user found!")
+        return
+    da = DeviantArt(user, timeout=60)
+
+    try:
         watchers = da.list_watchers(competitor.da_username)
         for watcher in watchers:
             logger.info(watcher)
@@ -156,12 +180,7 @@ def cycle_competitor():
                 continue
 
             competitor.watchers.add(watcher_obj)
-            competitor.updated_at = timezone.now()
             competitor.save()
+
     except Exception as e:
-        logger.exception(e)
-        mytask.last_error = traceback.format_exc()
-    finally:
-        mytask.last_run = timezone.now()
-        mytask.status = 'IDLE'
-        mytask.save()
+        pass
