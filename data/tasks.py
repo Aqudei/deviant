@@ -136,16 +136,19 @@ def cycle_competitor():
         da = DeviantArt(user, timeout=60)
         competitor = models.Competitor.objects.order_by('updated_at').first()
         profile = da.get_profile(competitor.da_username)
-        if profile:
-            competitor.da_userid = profile.get(
-                'user', {}).get('userid')
-            competitor.total_watchers = profile.get(
-                'user', {}).get('stats', {}).get('watchers', 0)
-            competitor.total_submission = profile.get(
-                'stats', {}).get('user_deviations', 0)
-            competitor.total_pageviews = profile.get(
-                'stats', {}).get('profile_pageviews', 0)
-            competitor.save()
+        if not profile:
+            logger.info("Profile not found for DA User: {}".format(
+                competitor.da_username))
+            return
+        competitor.da_userid = profile.get(
+            'user', {}).get('userid')
+        competitor.total_watchers = profile.get(
+            'user', {}).get('stats', {}).get('watchers', 0)
+        competitor.total_submission = profile.get(
+            'stats', {}).get('user_deviations', 0)
+        competitor.total_pageviews = profile.get(
+            'stats', {}).get('profile_pageviews', 0)
+        competitor.save()
     except Exception as e:
         logger.exception(e)
         mytask.last_error = traceback.format_exc()
