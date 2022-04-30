@@ -127,6 +127,7 @@ def cycle_competitor():
         name='COMPETITORS', owner=user)
 
     if mytask.status == 'RUNNING':
+        logger.warning("Task already running!")
         return
 
     mytask.status = 'RUNNING'
