@@ -155,6 +155,7 @@ def cycle_competitor():
         mytask.save()
 
 
+@shared_task
 def cycle_competitor_watcher():
     """
     docstring
