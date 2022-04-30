@@ -136,6 +136,7 @@ def cycle_competitor():
     try:
         da = DeviantArt(user, timeout=60)
         competitor = models.Competitor.objects.order_by('updated_at').first()
+        logger.info("Fetching deviant {} profile info".format(competitor.da_username))
         profile = da.get_profile(competitor.da_username)
         if not profile:
             logger.info("Profile not found for DA User: {}".format(
