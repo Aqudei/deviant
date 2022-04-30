@@ -160,6 +160,11 @@ def cycle_competitor_watcher():
     """
     docstring
     """
+    user = models.User.objects.filter(da_username='GrowGetter').first()
+    if not user:
+        logger.info("No user found!")
+        return
+
     mytask, created = models.MyTask.objects.get_or_create(
         name='COMPETITOR_WATCHERS', owner=user)
     if mytask.status == 'RUNNING':
@@ -172,11 +177,7 @@ def cycle_competitor_watcher():
         competitor = models.Competitor.objects.order_by('updated_at').first()
         if not competitor:
             return
-        user = models.User.objects.filter(da_username='GrowGetter').first()
 
-        if not user:
-            logger.info("No user found!")
-            return
         da = DeviantArt(user, timeout=60)
 
         watchers = da.list_watchers(competitor.da_username)
