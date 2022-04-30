@@ -27,6 +27,10 @@ class Thank(models.Model):
     sent_timestamp = models.DateTimeField(
         _("Sent Timestamp"), auto_now=False, auto_now_add=False, null=True, blank=True)
     message = models.TextField(_("Message"), default='Thanks for the fav!')
+    updated_at = models.DateTimeField(
+        _("Updated At"), auto_now=True, auto_now_add=False, null=True, blank=True)
+    created_at = models.DateTimeField(
+        _("Created At"), auto_now=False, auto_now_add=True, null=True, blank=True)
 
     class Meta:
         verbose_name = _("thank")

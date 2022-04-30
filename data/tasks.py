@@ -55,10 +55,11 @@ def cycle_prepmsg():
     """
     docstring
     """
-    for user in models.User.objects.filter(da_username='GrowGetter'):
-        for fav in models.Favor.objects.filter(owner=user):
-            models.Thank.objects.update_or_create(
-                owner=user, userid=fav.userid, defaults={'username': fav.username})
+    user = models.User.objects.filter(da_username='GrowGetter')
+
+    for fav in models.Favor.objects.filter(owner=user):
+        models.Thank.objects.update_or_create(
+            owner=user, userid=fav.userid, defaults={'username': fav.username})
 
 
 @shared_task
@@ -77,18 +78,19 @@ def cycle_sender():
 
     logger.info("Sending Thanks...")
 
-    thank = models.Thank.objects.filter(owner=user, sent=False).first()
+    thank = models.Thank.objects.filter(
+        owner=user, sent=False).order_by('updated_at').first()
     if not thank:
         return
 
     try:
         response_json = da.send_message(thank.username, thank.message)
         logger.info(response_json)
+        thank.sent = True
+        thank.sent_timestamp = timezone.now()
     except Exception as e:
         logger.exception(e)
     finally:
-        thank.sent = True
-        thank.sent_timestamp = timezone.now()
         thank.save()
 
 
@@ -136,7 +138,8 @@ def cycle_competitor():
     try:
         da = DeviantArt(user, timeout=60)
         competitor = models.Competitor.objects.order_by('updated_at').first()
-        logger.info("Fetching deviant {} profile info".format(competitor.da_username))
+        logger.info("Fetching deviant {} profile info".format(
+            competitor.da_username))
         profile = da.get_profile(competitor.da_username)
         if not profile:
             logger.info("Profile not found for DA User: {}".format(

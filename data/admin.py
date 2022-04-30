@@ -76,7 +76,7 @@ def mark_sent(modeladmin, request, queryset):
 @admin.register(Thank)
 class ThankAdmin(admin.ModelAdmin):
     list_display = ('owner', 'userid', 'username',
-                    'sent', 'sent_timestamp', 'message')
+                    'sent', 'sent_timestamp', 'message', 'created_at', 'updated_at')
     list_filter = ('sent',)
     actions = [mark_sent]
 
