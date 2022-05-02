@@ -57,7 +57,7 @@ class DAUserAdmin(admin.ModelAdmin):
         """
         docstring
         """
-        qs = super(DAUserAdmin, self).queryset(request)
+        qs = super(DAUserAdmin, self).get_queryset(request)
         return qs.annotate(compete_count=Count('competitors'))
 
     list_display = ('username', 'watchers_count', 'pageview_count',
