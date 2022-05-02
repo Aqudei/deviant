@@ -60,6 +60,7 @@ class DAUser(models.Model):
     created_at = models.DateTimeField(
         _("Created At"), auto_now=False, auto_now_add=True, null=True, blank=True)
 
+
     class Meta:
         verbose_name = _("Watcher")
         verbose_name_plural = _("Watchers")
@@ -77,6 +78,10 @@ class Deviation(models.Model):
     deviationid = models.UUIDField(_("Deviation Id"))
     title = models.CharField(_("Title"), max_length=250)
     favourites = models.IntegerField(_("Favourites"))
+    updated_at = models.DateTimeField(
+        _("Updated At"), auto_now=True, auto_now_add=False, null=True, blank=True)
+    created_at = models.DateTimeField(
+        _("Created At"), auto_now=False, auto_now_add=True, null=True, blank=True)
 
     class Meta:
         verbose_name = _("deviation")

@@ -8,6 +8,7 @@ from .models import *
 from django.contrib.auth.admin import UserAdmin
 from django.utils.html import format_html
 from django.urls import resolve
+from django.db.models import Count
 
 # Register your models here.
 
@@ -45,12 +46,20 @@ def post2profile(modeladmin, request, queryset):
 
 @admin.register(DAUser)
 class DAUserAdmin(admin.ModelAdmin):
-    @admin.display(description='Competitor Count')
+    @admin.display(description='Competitor Count', ordering='compete_count')
     def competitor_count(self, obj):
         """
         docstring
         """
         return obj.competitors.count()
+
+    def get_queryset(self, request):
+        """
+        docstring
+        """
+        qs = super(DAUserAdmin, self).queryset(request)
+        return qs.annotate(compete_count=Count('competitors'))
+
     list_display = ('username', 'watchers_count', 'pageview_count',
                     'deviations_count', 'competitor_count', 'notes', 'updated_at', 'created_at')
     search_fields = ('username', 'notes')
