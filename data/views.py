@@ -25,9 +25,7 @@ def install_patreon(request):
     return redirect(authorization_url)
 
 
-decorators.api_view(http_method_names=['post'])
-
-
+@decorators.api_view(http_method_names=['post'])
 def patreon_hook(request):
     """
     docstring
@@ -39,7 +37,7 @@ def patreon_hook(request):
         body=json.dumps(request.data, indent=2),
         headers=headers
     )
-    
+
     return response.Response()
 
 
