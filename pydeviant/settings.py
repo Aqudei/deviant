@@ -152,6 +152,12 @@ DA_TOKEN_URL = 'https://www.deviantart.com/oauth2/token'
 DA_REDIRECT_URL = os.environ.get('DA_REDIRECT_URL')
 DA_AUTHORIZATION_URL = os.environ.get('DA_AUTHORIZATION_URL')
 
+PATREON_CLIENT_NAME = "PASidekick"
+PATREON_CLIENT_ID = os.environ.get("PATREON_CLIENT_ID")
+PATREON_CLIENT_SECRET = os.environ.get("PATREON_CLIENT_SECRET")
+PATREON_ACCESS_TOKEN = os.environ.get("PATREON_ACCESS_TOKEN")
+PATREON_REFRESH_TOKEN = os.environ.get("PATREON_REFRESH_TOKEN")
+
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 STATIC_ROOT = BASE_DIR / 'static'

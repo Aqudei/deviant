@@ -3,21 +3,42 @@ from django.shortcuts import redirect, render
 from requests_oauthlib import OAuth2Session
 from django.conf import settings
 import pickle
-
 from data import forms
 from .models import *
+from rest_framework import decorators, response
 
 # Create your views here.
 
-
-def index(request):
+def install_patreon(request):
     """
     docstring
     """
-    authorization_url = ''
+    scope = 'user browse comment.post'
+    deviant = OAuth2Session(settings.DA_CLIENT_ID,
+                            redirect_uri=settings.DA_REDIRECT_URL, scope=scope)
 
-    if request.method == 'GET':
-        return render(request, 'data/index.html')
+    authorization_url, state = deviant.authorization_url(
+        settings.DA_AUTHORIZATION_URL)
+
+    return redirect(authorization_url)
+
+
+def member_created(request):
+    """
+    docstring
+    """
+    return  response.Response() 
+
+def member_deleted(request):
+    """
+    docstring
+    """
+    return  response.Response()
+
+def install_da(request):
+    """
+    docstring
+    """
 
     if request.method == 'POST':
         scope = 'user browse comment.post'
@@ -29,6 +50,14 @@ def index(request):
 
         return redirect(authorization_url)
 
+def index(request):
+    """
+    docstring
+    """
+    authorization_url = ''
+
+    if request.method == 'GET':
+        return render(request, 'data/index.html')
 
 def init_auth(request):
     scope = 'user browse comment.post'

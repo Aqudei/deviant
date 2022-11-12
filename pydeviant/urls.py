@@ -15,13 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from data.views import oauth_callback, index, init_auth, post2profile
+from data.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('oauthlogin', oauth_callback),
     path('init_auth', init_auth),
     path('post2profile', post2profile),
-    path('', index, name='index')
-
+    path('install_da', install_da, name='install_da'),
+    path('install_patreon', install_patreon, name='install_patreon'),
+    path('patreon/webhook/membercreated',
+         member_created, name='member_created'),
+    path('patreon/webhook/memberdeleted',
+         member_deleted, name='member_deleted'),
+    path('', index, name='index'),
 ]

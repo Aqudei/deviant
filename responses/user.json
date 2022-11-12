@@ -1,0 +1,145 @@
+{
+  "attributes": {
+    "about": "visit growgettercomics.com",
+    "apple_id": null,
+    "can_see_nsfw": true,
+    "created": "2019-08-31T23:02:39.000+00:00",
+    "default_country_code": null,
+    "discord_id": null,
+    "email": "marrtrobinson2312@gmail.com",
+    "facebook": null,
+    "facebook_id": null,
+    "first_name": "growgetter",
+    "full_name": "growgetter",
+    "gender": 0,
+    "google_id": null,
+    "has_password": true,
+    "image_url": "https://c8.patreon.com/2/200/23893327",
+    "is_deleted": false,
+    "is_email_verified": true,
+    "is_nuked": false,
+    "is_suspended": false,
+    "last_name": "",
+    "patron_currency": "USD",
+    "social_connections": {
+      "deviantart": null,
+      "discord": null,
+      "facebook": null,
+      "google": null,
+      "instagram": null,
+      "reddit": null,
+      "spotify": null,
+      "twitch": null,
+      "twitter": null,
+      "vimeo": null,
+      "youtube": null
+    },
+    "thumb_url": "https://c8.patreon.com/2/200/23893327",
+    "twitch": null,
+    "twitter": null,
+    "url": "https://www.patreon.com/growgetter",
+    "vanity": "growgetter",
+    "youtube": null
+  },
+  "id": "23893327",
+  "relationships": {
+    "campaign": {
+      "data": {
+        "id": "3138139",
+        "type": "campaign"
+      },
+      "links": {
+        "related": "https://www.patreon.com/api/campaigns/3138139"
+      }
+    },
+    "pledges": {
+      "data": [
+        {
+          "id": "111872491",
+          "type": "pledge"
+        },
+        {
+          "id": "110928153",
+          "type": "pledge"
+        },
+        {
+          "id": "110030830",
+          "type": "pledge"
+        },
+        {
+          "id": "108816836",
+          "type": "pledge"
+        },
+        {
+          "id": "106942878",
+          "type": "pledge"
+        },
+        {
+          "id": "100849057",
+          "type": "pledge"
+        },
+        {
+          "id": "95258791",
+          "type": "pledge"
+        },
+        {
+          "id": "94114054",
+          "type": "pledge"
+        },
+        {
+          "id": "92332779",
+          "type": "pledge"
+        },
+        {
+          "id": "85913148",
+          "type": "pledge"
+        },
+        {
+          "id": "84880075",
+          "type": "pledge"
+        },
+        {
+          "id": "82648654",
+          "type": "pledge"
+        },
+        {
+          "id": "80467428",
+          "type": "pledge"
+        },
+        {
+          "id": "79505608",
+          "type": "pledge"
+        },
+        {
+          "id": "79008127",
+          "type": "pledge"
+        },
+        {
+          "id": "78239258",
+          "type": "pledge"
+        },
+        {
+          "id": "71919813",
+          "type": "pledge"
+        },
+        {
+          "id": "69446857",
+          "type": "pledge"
+        },
+        {
+          "id": "64621501",
+          "type": "pledge"
+        },
+        {
+          "id": "60338742",
+          "type": "pledge"
+        },
+        {
+          "id": "50662701",
+          "type": "pledge"
+        }
+      ]
+    }
+  },
+  "type": "user"
+}

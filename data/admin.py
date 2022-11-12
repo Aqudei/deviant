@@ -32,7 +32,8 @@ class MyUserAdmin(UserAdmin):
             "fields": (
                 "da_username",
                 "token",
-                "da_userid"
+                "da_userid",
+                'patreon_token'
             ),
         }),
     )

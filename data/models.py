@@ -8,12 +8,29 @@ from django.conf import settings
 # Create your models here.
 
 
+class Webhooh(models.Model):
+
+    trigger = models.CharField(_("Trigger"), max_length=100)
+    url = models.URLField(_("Url"), max_length=400)
+
+    class Meta:
+        verbose_name = _("webhooh")
+        verbose_name_plural = _("webhoohs")
+
+    def __str__(self):
+        return self.trigger
+
+    def get_absolute_url(self):
+        return reverse("webhooh_detail", kwargs={"pk": self.pk})
+
+
 class User(AbstractUser):
     da_username = models.CharField(
         _("Deviant Username"), max_length=100, null=True, blank=True, unique=True)
     token = models.JSONField(_("Token"), null=True, blank=True)
     da_userid = models.CharField(
         _("DA User Id"), max_length=100, null=True, blank=True)
+    patreon_token = models.JSONField(_("Patreon Token"), null=True, blank=True)
 
 
 class Thank(models.Model):
@@ -59,7 +76,6 @@ class DAUser(models.Model):
         _("Updated At"), auto_now=True, auto_now_add=False, null=True, blank=True)
     created_at = models.DateTimeField(
         _("Created At"), auto_now=False, auto_now_add=True, null=True, blank=True)
-
 
     class Meta:
         verbose_name = _("Watcher")

@@ -1,0 +1,187 @@
+[
+  {
+    "attributes": {
+      "avatar_photo_image_urls": {
+        "default": "https://c10.patreonusercontent.com/4/patreon-media/p/campaign/3138139/a53344eec8d646b38ab62a4017d6813e/eyJ3Ijo2MjB9/1.png?token-time=1668729600&token-hash=fNHzjSW8fBQ7q_uOjrMyDBxn7Zul2gjtZIYeI4wYOx4%3D",
+        "default_small": "https://c10.patreonusercontent.com/4/patreon-media/p/campaign/3138139/a53344eec8d646b38ab62a4017d6813e/eyJ3IjozNjB9/1.png?token-time=1668729600&token-hash=lJEmNWdXDn9l-lvGxlsvXc4n4z7GbtB-M4NY_gcDXYc%3D",
+        "original": "https://c10.patreonusercontent.com/4/patreon-media/p/campaign/3138139/a53344eec8d646b38ab62a4017d6813e/eyJxIjoxMDAsIndlYnAiOjB9/1.png?token-time=1668729600&token-hash=dmtJTJ6bIWRgDep1NuxphCOElahHJPgzMtj_l2KEYhE%3D",
+        "thumbnail": "https://c10.patreonusercontent.com/4/patreon-media/p/campaign/3138139/a53344eec8d646b38ab62a4017d6813e/eyJoIjozNjAsInciOjM2MH0%3D/1.png?token-time=1668729600&token-hash=xerr0FYPs5TtPA10clNR7N2h7rfSnKRA1wVKaRLZV7A%3D",
+        "thumbnail_large": "https://c10.patreonusercontent.com/4/patreon-media/p/campaign/3138139/a53344eec8d646b38ab62a4017d6813e/eyJoIjoxMDgwLCJ3IjoxMDgwfQ%3D%3D/1.png?token-time=1668729600&token-hash=W4rMovroXnQGvRq0CzfHrkTHrFjEX_1PO5j5kokcQiw%3D",
+        "thumbnail_small": "https://c10.patreonusercontent.com/4/patreon-media/p/campaign/3138139/a53344eec8d646b38ab62a4017d6813e/eyJoIjoxMDAsInciOjEwMH0%3D/1.png?token-time=1668729600&token-hash=pBpUOFuF1Q2trpo5TlWqu47edVMstAdW8NtfFALWz5U%3D"
+      },
+      "avatar_photo_url": "https://c10.patreonusercontent.com/4/patreon-media/p/campaign/3138139/a53344eec8d646b38ab62a4017d6813e/eyJ3IjoyMDB9/1.png?token-time=2145916800&token-hash=5_n2DFnhPUGS79r30CrBZptuYuj6G9SmysAykXhieaM%3D",
+      "campaign_pledge_sum": 547406,
+      "cover_photo_url": "https://c10.patreonusercontent.com/4/patreon-media/p/campaign/3138139/c73a41feace14f7cbb3f5402ccbd8263/eyJ3IjoxOTIwLCJ3ZSI6MX0%3D/1.png?token-time=1670112000&token-hash=dvMO5bGNb2DDMYEyCdJJIP9dRM8hOfexM3ijmn-yAQU%3D",
+      "cover_photo_url_sizes": {
+        "large": "https://c10.patreonusercontent.com/4/patreon-media/p/campaign/3138139/c73a41feace14f7cbb3f5402ccbd8263/eyJ3IjoxOTIwLCJ3ZSI6MX0%3D/1.png?token-time=1670112000&token-hash=dvMO5bGNb2DDMYEyCdJJIP9dRM8hOfexM3ijmn-yAQU%3D",
+        "medium": "https://c10.patreonusercontent.com/4/patreon-media/p/campaign/3138139/c73a41feace14f7cbb3f5402ccbd8263/eyJ3Ijo5NjAsIndlIjoxfQ%3D%3D/1.png?token-time=1670112000&token-hash=2b1yndtMF8llny6hA4vJCP40jJ3nHR7sZuFUM6aTziA%3D",
+        "small": "https://c10.patreonusercontent.com/4/patreon-media/p/campaign/3138139/c73a41feace14f7cbb3f5402ccbd8263/eyJ3Ijo2MjAsIndlIjoxfQ%3D%3D/1.png?token-time=1670112000&token-hash=hfJVEXFPLlgtGIoaxrSTEzVjK51531srzwQVcYwL5c8%3D"
+      },
+      "created_at": "2019-08-31T23:03:34.000+00:00",
+      "creation_count": 632,
+      "creation_name": "Muscle Growth Creations",
+      "currency": "USD",
+      "discord_server_id": "1009704513923448883",
+      "display_patron_goals": false,
+      "earnings_visibility": "private",
+      "image_small_url": "https://c10.patreonusercontent.com/4/patreon-media/p/campaign/3138139/c73a41feace14f7cbb3f5402ccbd8263/eyJ3IjoxOTIwLCJ3ZSI6MX0%3D/1.png?token-time=1670112000&token-hash=dvMO5bGNb2DDMYEyCdJJIP9dRM8hOfexM3ijmn-yAQU%3D",
+      "image_url": "https://c10.patreonusercontent.com/4/patreon-media/p/campaign/3138139/c73a41feace14f7cbb3f5402ccbd8263/eyJ3IjoxOTIwLCJ3ZSI6MX0%3D/1.png?token-time=1670112000&token-hash=dvMO5bGNb2DDMYEyCdJJIP9dRM8hOfexM3ijmn-yAQU%3D",
+      "is_charge_upfront": true,
+      "is_charged_immediately": true,
+      "is_monthly": true,
+      "is_nsfw": true,
+      "is_plural": false,
+      "main_video_embed": null,
+      "main_video_url": null,
+      "name": "GrowGetter Muscle Growth",
+      "one_liner": null,
+      "outstanding_payment_amount_cents": 0,
+      "patron_count": 526,
+      "pay_per_name": "month",
+      "pledge_sum": 547406,
+      "pledge_sum_currency": "USD",
+      "pledge_url": "/join/growgetter",
+      "published_at": "2019-09-01T00:41:51.000+00:00",
+      "summary": "Thank you for your support.\u00a0 Joining this patreon and youll join others who make art possible.\u00a0 \u00a0All the funds go directly to artists and the more people sign up and stay, the more art there will be.<br><br>Upon signup your email will be sent several comics within 24 hours.\u00a0 You will also get access to a lot of art and be able to suggest art.\u00a0 Every contribution counts and its perfectly fine to just stay for a month to collect some comics.<br><br>If you are dissatisfied at all, I will provide an immediate refund upon getting your message.",
+      "thanks_embed": null,
+      "thanks_msg": null,
+      "thanks_video_url": null,
+      "url": "https://www.patreon.com/growgetter"
+    },
+    "id": "3138139",
+    "relationships": {
+      "creator": {
+        "data": {
+          "id": "23893327",
+          "type": "user"
+        },
+        "links": {
+          "related": "https://www.patreon.com/api/user/23893327"
+        }
+      },
+      "goals": {
+        "data": []
+      },
+      "pledges": {
+        "data": [
+          {
+            "id": "39856786",
+            "type": "pledge"
+          },
+          {
+            "id": "40788838",
+            "type": "pledge"
+          },
+          {
+            "id": "42031733",
+            "type": "pledge"
+          },
+          {
+            "id": "45186619",
+            "type": "pledge"
+          },
+          {
+            "id": "59654902",
+            "type": "pledge"
+          },
+          {
+            "id": "60471335",
+            "type": "pledge"
+          },
+          {
+            "id": "61323685",
+            "type": "pledge"
+          },
+          {
+            "id": "61690940",
+            "type": "pledge"
+          },
+          {
+            "id": "61904519",
+            "type": "pledge"
+          },
+          {
+            "id": "63324370",
+            "type": "pledge"
+          },
+          {
+            "id": "63732062",
+            "type": "pledge"
+          },
+          {
+            "id": "64045044",
+            "type": "pledge"
+          },
+          {
+            "id": "64221752",
+            "type": "pledge"
+          },
+          {
+            "id": "64391106",
+            "type": "pledge"
+          },
+          {
+            "id": "66703978",
+            "type": "pledge"
+          },
+          {
+            "id": "67432668",
+            "type": "pledge"
+          },
+          {
+            "id": "68162604",
+            "type": "pledge"
+          },
+          {
+            "id": "68193177",
+            "type": "pledge"
+          },
+          {
+            "id": "68654711",
+            "type": "pledge"
+          },
+          {
+            "id": "69066052",
+            "type": "pledge"
+          }
+        ],
+        "links": {
+          "first": "https://www.patreon.com/api/oauth2/api/campaigns/3138139/pledges?page%5Bcount%5D=20&sort=created",
+          "next": "https://www.patreon.com/api/oauth2/api/campaigns/3138139/pledges?page%5Bcount%5D=20&sort=created&page%5Bcursor%5D=2021-05-23T18%3A43%3A23.124055%2B00%3A00"
+        },
+        "meta": {
+          "count": 569
+        }
+      },
+      "rewards": {
+        "data": [
+          {
+            "id": "-1",
+            "type": "reward"
+          },
+          {
+            "id": "0",
+            "type": "reward"
+          },
+          {
+            "id": "3955769",
+            "type": "reward"
+          },
+          {
+            "id": "6800206",
+            "type": "reward"
+          },
+          {
+            "id": "7455045",
+            "type": "reward"
+          },
+          {
+            "id": "9013462",
+            "type": "reward"
+          }
+        ]
+      }
+    },
+    "type": "campaign"
+  }
+]

@@ -44,14 +44,22 @@
                             
                                 <!-- Email address input-->
                             <div class="row">
-                                <form class="form-subscribe" method='post' action='{% url 'index' %}' id="contactForm" data-sb-form-api-token="API_TOKEN">
+                                <form class="form-subscribe" method='post' action='{% url 'install_da' %}' id="contactForm" data-sb-form-api-token="API_TOKEN">
                                     {% csrf_token %}
                                     <div class="row">
-                                        <div class="col"><button class="btn btn-primary btn-lg" id="submitButton" type="submit">Install App</button></div>
+                                        <div class="col"><button class="btn btn-primary btn-lg" id="submitButton" type="submit">Install App for DeviantArt</button></div>
                                     </div>
                                 </form>
                             </div>
 
+                            <div class="row">
+                                <form class="form-subscribe" method='post' action='{% url 'index' %}' id="contactForm" data-sb-form-api-token="API_TOKEN">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col"><button class="btn btn-primary btn-lg" id="submitButton" type="submit">Install App for Patreon</button></div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,381 @@
+{
+  "data": {
+    "attributes": {},
+    "id": "23893327",
+    "relationships": {
+      "memberships": {
+        "data": [
+          {
+            "id": "552fba57-1077-42ba-afbe-4b08f8b2f84a",
+            "type": "member"
+          },
+          {
+            "id": "6cc2a22f-e48a-44a5-80fb-a5519007752a",
+            "type": "member"
+          },
+          {
+            "id": "75a2bae9-ef82-49ac-8203-15228fdcacdf",
+            "type": "member"
+          },
+          {
+            "id": "e8e8c34a-5a8e-4604-b46c-bd291733780f",
+            "type": "member"
+          },
+          {
+            "id": "437fb89a-4d3a-4c18-b980-c32d2a9f257a",
+            "type": "member"
+          },
+          {
+            "id": "9d4b7675-1923-458c-badb-05de55bae8e6",
+            "type": "member"
+          },
+          {
+            "id": "46af1975-0fb4-48d6-ace8-18b2ebc39afc",
+            "type": "member"
+          },
+          {
+            "id": "ac820e9c-1cf8-4fcc-8400-da29ab2a65ca",
+            "type": "member"
+          },
+          {
+            "id": "30cd3a68-1779-4a5a-a9e6-7254a0aa5cdc",
+            "type": "member"
+          },
+          {
+            "id": "e404937a-04b9-4177-ba02-fadb40649b9a",
+            "type": "member"
+          },
+          {
+            "id": "cda9dcd3-87c9-454c-933d-27efd1d212fb",
+            "type": "member"
+          },
+          {
+            "id": "009951b2-de5a-4514-81d3-9815ef7bbd9b",
+            "type": "member"
+          },
+          {
+            "id": "e0a5c63c-65ae-4abe-adab-5e6da32dfd07",
+            "type": "member"
+          },
+          {
+            "id": "18b6804c-641c-430e-940d-fdecdc2f90ab",
+            "type": "member"
+          },
+          {
+            "id": "79bb6995-48c6-4880-a414-8abc9bced6b7",
+            "type": "member"
+          },
+          {
+            "id": "56b65c2e-8014-4b5f-951f-d54ef9e3a0c9",
+            "type": "member"
+          },
+          {
+            "id": "5b4f0d9a-cd35-4ebb-bba7-e4edafb3c4a5",
+            "type": "member"
+          },
+          {
+            "id": "6bc5ee50-d074-41a4-8985-532a31206e00",
+            "type": "member"
+          },
+          {
+            "id": "22440ddd-2d09-4599-9670-bc71cdb1a515",
+            "type": "member"
+          },
+          {
+            "id": "7ab8fc5e-a5d9-4ea1-a453-70e33cb6e623",
+            "type": "member"
+          },
+          {
+            "id": "2d22a4fb-92c7-4ade-b784-e541260ecbb0",
+            "type": "member"
+          },
+          {
+            "id": "02935be2-8bed-4af9-bac3-ba6274e0a83a",
+            "type": "member"
+          },
+          {
+            "id": "4c85f6a2-5a4a-4a5f-9f3e-169cd66db907",
+            "type": "member"
+          },
+          {
+            "id": "e9b6ec8c-4c36-44b7-877f-e45abb720106",
+            "type": "member"
+          },
+          {
+            "id": "d0315f8e-f34a-4e0a-a87a-eba3aaa2b2e7",
+            "type": "member"
+          },
+          {
+            "id": "4b4bb7c0-39e3-42e9-b8aa-1d32502096b2",
+            "type": "member"
+          },
+          {
+            "id": "190b383e-a919-4182-bde6-70b9b1442a44",
+            "type": "member"
+          },
+          {
+            "id": "e03ccf9f-54de-46be-8ae3-40e7a12d47cb",
+            "type": "member"
+          },
+          {
+            "id": "39650368-a4bb-4dae-ae01-f27f6973cf87",
+            "type": "member"
+          },
+          {
+            "id": "8bb873dd-4302-4efa-84a0-cac66bcf8433",
+            "type": "member"
+          },
+          {
+            "id": "491d3bbc-f6db-4376-b5f1-34925785e718",
+            "type": "member"
+          },
+          {
+            "id": "36668c7d-f004-48a0-894d-0800d83bcec6",
+            "type": "member"
+          },
+          {
+            "id": "3198d0c1-a6ba-49c3-8c4d-e57c1c289d03",
+            "type": "member"
+          }
+        ]
+      }
+    },
+    "type": "user"
+  },
+  "included": [
+    {
+      "attributes": {
+        "full_name": "growgetter"
+      },
+      "id": "552fba57-1077-42ba-afbe-4b08f8b2f84a",
+      "type": "member"
+    },
+    {
+      "attributes": {
+        "full_name": "growgetter"
+      },
+      "id": "6cc2a22f-e48a-44a5-80fb-a5519007752a",
+      "type": "member"
+    },
+    {
+      "attributes": {
+        "full_name": "growgetter"
+      },
+      "id": "75a2bae9-ef82-49ac-8203-15228fdcacdf",
+      "type": "member"
+    },
+    {
+      "attributes": {
+        "full_name": "growgetter"
+      },
+      "id": "e8e8c34a-5a8e-4604-b46c-bd291733780f",
+      "type": "member"
+    },
+    {
+      "attributes": {
+        "full_name": "growgetter"
+      },
+      "id": "437fb89a-4d3a-4c18-b980-c32d2a9f257a",
+      "type": "member"
+    },
+    {
+      "attributes": {
+        "full_name": "growgetter"
+      },
+      "id": "9d4b7675-1923-458c-badb-05de55bae8e6",
+      "type": "member"
+    },
+    {
+      "attributes": {
+        "full_name": "growgetter"
+      },
+      "id": "46af1975-0fb4-48d6-ace8-18b2ebc39afc",
+      "type": "member"
+    },
+    {
+      "attributes": {
+        "full_name": "growgetter"
+      },
+      "id": "ac820e9c-1cf8-4fcc-8400-da29ab2a65ca",
+      "type": "member"
+    },
+    {
+      "attributes": {
+        "full_name": "growgetter"
+      },
+      "id": "30cd3a68-1779-4a5a-a9e6-7254a0aa5cdc",
+      "type": "member"
+    },
+    {
+      "attributes": {
+        "full_name": "growgetter"
+      },
+      "id": "e404937a-04b9-4177-ba02-fadb40649b9a",
+      "type": "member"
+    },
+    {
+      "attributes": {
+        "full_name": "growgetter"
+      },
+      "id": "cda9dcd3-87c9-454c-933d-27efd1d212fb",
+      "type": "member"
+    },
+    {
+      "attributes": {
+        "full_name": "growgetter"
+      },
+      "id": "009951b2-de5a-4514-81d3-9815ef7bbd9b",
+      "type": "member"
+    },
+    {
+      "attributes": {
+        "full_name": "growgetter"
+      },
+      "id": "e0a5c63c-65ae-4abe-adab-5e6da32dfd07",
+      "type": "member"
+    },
+    {
+      "attributes": {
+        "full_name": "growgetter"
+      },
+      "id": "18b6804c-641c-430e-940d-fdecdc2f90ab",
+      "type": "member"
+    },
+    {
+      "attributes": {
+        "full_name": "growgetter"
+      },
+      "id": "79bb6995-48c6-4880-a414-8abc9bced6b7",
+      "type": "member"
+    },
+    {
+      "attributes": {
+        "full_name": "growgetter"
+      },
+      "id": "56b65c2e-8014-4b5f-951f-d54ef9e3a0c9",
+      "type": "member"
+    },
+    {
+      "attributes": {
+        "full_name": "growgetter"
+      },
+      "id": "5b4f0d9a-cd35-4ebb-bba7-e4edafb3c4a5",
+      "type": "member"
+    },
+    {
+      "attributes": {
+        "full_name": "growgetter"
+      },
+      "id": "6bc5ee50-d074-41a4-8985-532a31206e00",
+      "type": "member"
+    },
+    {
+      "attributes": {
+        "full_name": "growgetter"
+      },
+      "id": "22440ddd-2d09-4599-9670-bc71cdb1a515",
+      "type": "member"
+    },
+    {
+      "attributes": {
+        "full_name": "growgetter"
+      },
+      "id": "7ab8fc5e-a5d9-4ea1-a453-70e33cb6e623",
+      "type": "member"
+    },
+    {
+      "attributes": {
+        "full_name": "growgetter"
+      },
+      "id": "2d22a4fb-92c7-4ade-b784-e541260ecbb0",
+      "type": "member"
+    },
+    {
+      "attributes": {
+        "full_name": "growgetter"
+      },
+      "id": "02935be2-8bed-4af9-bac3-ba6274e0a83a",
+      "type": "member"
+    },
+    {
+      "attributes": {
+        "full_name": "growgetter"
+      },
+      "id": "4c85f6a2-5a4a-4a5f-9f3e-169cd66db907",
+      "type": "member"
+    },
+    {
+      "attributes": {
+        "full_name": "growgetter"
+      },
+      "id": "e9b6ec8c-4c36-44b7-877f-e45abb720106",
+      "type": "member"
+    },
+    {
+      "attributes": {
+        "full_name": "growgetter"
+      },
+      "id": "d0315f8e-f34a-4e0a-a87a-eba3aaa2b2e7",
+      "type": "member"
+    },
+    {
+      "attributes": {
+        "full_name": "growgetter"
+      },
+      "id": "4b4bb7c0-39e3-42e9-b8aa-1d32502096b2",
+      "type": "member"
+    },
+    {
+      "attributes": {
+        "full_name": "growgetter"
+      },
+      "id": "190b383e-a919-4182-bde6-70b9b1442a44",
+      "type": "member"
+    },
+    {
+      "attributes": {
+        "full_name": "growgetter"
+      },
+      "id": "e03ccf9f-54de-46be-8ae3-40e7a12d47cb",
+      "type": "member"
+    },
+    {
+      "attributes": {
+        "full_name": "growgetter"
+      },
+      "id": "39650368-a4bb-4dae-ae01-f27f6973cf87",
+      "type": "member"
+    },
+    {
+      "attributes": {
+        "full_name": "growgetter"
+      },
+      "id": "8bb873dd-4302-4efa-84a0-cac66bcf8433",
+      "type": "member"
+    },
+    {
+      "attributes": {
+        "full_name": "growgetter"
+      },
+      "id": "491d3bbc-f6db-4376-b5f1-34925785e718",
+      "type": "member"
+    },
+    {
+      "attributes": {
+        "full_name": "growgetter"
+      },
+      "id": "36668c7d-f004-48a0-894d-0800d83bcec6",
+      "type": "member"
+    },
+    {
+      "attributes": {
+        "full_name": "growgetter"
+      },
+      "id": "3198d0c1-a6ba-49c3-8c4d-e57c1c289d03",
+      "type": "member"
+    }
+  ],
+  "links": {
+    "self": "https://www.patreon.com/api/oauth2/v2/user/23893327"
+  }
+}
