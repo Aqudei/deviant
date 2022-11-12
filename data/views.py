@@ -22,13 +22,14 @@ def install_patreon(request):
 
     return redirect(authorization_url)
 
-
+decorators.api_view(http_method_names=['post'])
 def member_created(request):
     """
     docstring
     """
     return  response.Response() 
 
+decorators.api_view(http_method_names=['post'])
 def member_deleted(request):
     """
     docstring
