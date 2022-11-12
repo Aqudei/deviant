@@ -24,9 +24,7 @@ urlpatterns = [
     path('post2profile', post2profile),
     path('install_da', install_da, name='install_da'),
     path('install_patreon', install_patreon, name='install_patreon'),
-    path('patreon/webhook/membercreated',
-         member_created, name='member_created'),
-    path('patreon/webhook/memberdeleted',
-         member_deleted, name='member_deleted'),
+    path('patreon/webhook/',
+         patreon_hook, name='webhook'),
     path('', index, name='index'),
 ]

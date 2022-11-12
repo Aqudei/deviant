@@ -13,6 +13,11 @@ from django.db.models import Count
 # Register your models here.
 
 
+@admin.register(HookRequest)
+class HookRequestAdmin(admin.ModelAdmin):
+    list_display = ['id', 'created_at', 'headers', 'body']
+
+
 @admin.register(User)
 class MyUserAdmin(UserAdmin):
     """

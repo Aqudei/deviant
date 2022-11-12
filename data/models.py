@@ -8,7 +8,25 @@ from django.conf import settings
 # Create your models here.
 
 
-class Webhooh(models.Model):
+class HookRequest(models.Model):
+
+    created_at = models.DateTimeField(
+        _("Created At"), auto_now=False, auto_now_add=True)
+    body = models.TextField(_("Body"))
+    headers = models.TextField(_("Headers"))
+
+    class Meta:
+        verbose_name = _("hookrequest")
+        verbose_name_plural = _("hookrequests")
+
+    def __str__(self):
+        return self.body[:30]
+
+    def get_absolute_url(self):
+        return reverse("hookrequest_detail", kwargs={"pk": self.pk})
+
+
+class Webhook(models.Model):
 
     trigger = models.CharField(_("Trigger"), max_length=100)
     url = models.URLField(_("Url"), max_length=400)

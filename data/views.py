@@ -1,3 +1,4 @@
+import json
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from requests_oauthlib import OAuth2Session
@@ -8,6 +9,7 @@ from .models import *
 from rest_framework import decorators, response
 
 # Create your views here.
+
 
 def install_patreon(request):
     """
@@ -22,19 +24,24 @@ def install_patreon(request):
 
     return redirect(authorization_url)
 
-decorators.api_view(http_method_names=['post'])
-def member_created(request):
-    """
-    docstring
-    """
-    return  response.Response() 
 
 decorators.api_view(http_method_names=['post'])
-def member_deleted(request):
+
+
+def patreon_hook(request):
     """
     docstring
     """
-    return  response.Response()
+    secret = 'IundVGCpkwhTRBAOSrTiCsQ-nRkp0fSfgwrR6AXl2nX3n-xqFnTTJ564jkLgnA9u'
+
+    headers = json.dumps(request.headers.__dict__, indent=2)
+    HookRequest.objects.create(
+        body=json.dumps(request.data, indent=2),
+        headers=headers
+    )
+    
+    return response.Response()
+
 
 def install_da(request):
     """
@@ -51,6 +58,7 @@ def install_da(request):
 
         return redirect(authorization_url)
 
+
 def index(request):
     """
     docstring
@@ -59,6 +67,7 @@ def index(request):
 
     if request.method == 'GET':
         return render(request, 'data/index.html')
+
 
 def init_auth(request):
     scope = 'user browse comment.post'
